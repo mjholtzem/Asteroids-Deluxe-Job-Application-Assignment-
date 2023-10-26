@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -1011426653577144525}
   - component: {fileID: 9038317511316948911}
   - component: {fileID: 219233432202462680}
+  - component: {fileID: 8847125242742033650}
   m_Layer: 0
   m_Name: ChaserLarge
   m_TagString: Chaser
@@ -140,7 +141,6 @@ MonoBehaviour:
   _movement: {fileID: -9077527333464678491}
   _destroyable: {fileID: -1011426653577144525}
   _rigidbody: {fileID: 9038317511316948911}
-  _invulnerabilityWindow: 0.5
   _turnSpeed: 50
   _boostAcceleration: 5
   _children:
@@ -238,6 +238,20 @@ PolygonCollider2D:
       - {x: 0.31097028, y: -0.16184682}
       - {x: 0.26505893, y: -0.008936681}
       - {x: 0.32266247, y: 0.16400312}
+--- !u!114 &8847125242742033650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4777362684690731665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a68d0ffbe0c7345bd1f8ee568e97e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _invulnerabilityWindow: 0.5
+  _rigidbody: {fileID: 9038317511316948911}
 --- !u!1001 &2404266491636710743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,25 +259,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6771257174842992915}
     m_Modifications:
-    - target: {fileID: -6834387138587751309, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6834387138587751309, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
-      propertyPath: _invulnerabilityWindow
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -5465933318293538426, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 566835486359638384, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
       propertyPath: m_Name
       value: ChaserSmall
-      objectReference: {fileID: 0}
-    - target: {fileID: 566835486359638384, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2693087671332418528, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
       propertyPath: m_RootOrder
@@ -334,25 +332,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6771257174842992915}
     m_Modifications:
-    - target: {fileID: -6834387138587751309, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6834387138587751309, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
-      propertyPath: _invulnerabilityWindow
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -5465933318293538426, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 566835486359638384, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
       propertyPath: m_Name
       value: ChaserSmall
-      objectReference: {fileID: 0}
-    - target: {fileID: 566835486359638384, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2693087671332418528, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
       propertyPath: m_RootOrder

@@ -4,7 +4,6 @@ namespace AsteroidsDeluxe
 {
 	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(Destroyable))]
-	[RequireComponent(typeof(Rigidbody2D))]
 	public abstract class AsteroidsBehaviour : MonoBehaviour, ICanScreenWrap
 	{
 		[SerializeField] private ObjectType _objectType;
@@ -16,9 +15,6 @@ namespace AsteroidsDeluxe
 		public Movement Movement => _movement;
 
 		[SerializeField] protected Destroyable _destroyable;
-
-		[SerializeField] private Rigidbody2D _rigidbody;
-		public Rigidbody2D Rigidbody => _rigidbody;
 
 		public Renderer Renderer => _mainRenderer;
 		public Vector2 Velocity => _movement.currentVelocity;
@@ -46,7 +42,6 @@ namespace AsteroidsDeluxe
 		{
 			_movement = GetComponent<Movement>();
 			_destroyable = GetComponent<Destroyable>();
-			_rigidbody = GetComponent<Rigidbody2D>();
 		}
 	}
 }

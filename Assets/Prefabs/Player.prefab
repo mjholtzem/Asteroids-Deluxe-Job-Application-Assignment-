@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 6244751669592573561}
   - component: {fileID: 5346468155441333315}
   - component: {fileID: 6373195332990462999}
+  - component: {fileID: -5973182246128905098}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -233,7 +234,6 @@ MonoBehaviour:
   _mainRenderer: {fileID: 8253563684106059451}
   _movement: {fileID: 6674557944435304876}
   _destroyable: {fileID: 6373195332990462999}
-  _rigidbody: {fileID: 6244751669592573561}
   _gun: {fileID: 5346468155441333315}
   _turnSpeed: 250
   _boostAcceleration: 15
@@ -312,6 +312,20 @@ MonoBehaviour:
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-5973182246128905098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253563685021643220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a68d0ffbe0c7345bd1f8ee568e97e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _invulnerabilityWindow: 1
+  _rigidbody: {fileID: 6244751669592573561}
 --- !u!1 &8253563685379166744
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,10 +7,6 @@ namespace AsteroidsDeluxe
 {
     public class Chaser : AsteroidsBehaviour
     {
-		[Header("Config")]
-		[Min(0)]
-		[SerializeField] private float _invulnerabilityWindow = .25f;
-
 		[Header("Movement")]
 		[SerializeField] private float _turnSpeed;
 		[SerializeField] private float _boostAcceleration;
@@ -26,21 +22,6 @@ namespace AsteroidsDeluxe
 			base.Start();
 
 			_player = GameManager.Instance.Player;
-		}
-
-		protected override void OnEnable()
-		{
-			base.OnEnable();
-			HandleInvulerabilityWindow();
-		}
-
-		private async void HandleInvulerabilityWindow()
-		{
-			Debug.Log($"Vulnerability Window - {gameObject.name} - {_invulnerabilityWindow}");
-			Rigidbody.simulated = false;
-			await Task.Delay(TimeSpan.FromSeconds(_invulnerabilityWindow));
-			Debug.Log($"Vulnerability Window - {gameObject.name} - turning on rigidbody");
-			Rigidbody.simulated = true;
 		}
 
 		private void Update()
@@ -59,7 +40,8 @@ namespace AsteroidsDeluxe
 				return;
 			}
 
-			var dot = Vector2.Dot(transform.right, (_player.transform.position - transform.position).normalized);
+			var playerPos = GameManager.Instance.ScreenWrapManager.GetClosestPlayerPosition(transform.position);
+			var dot = Vector2.Dot(transform.right, (playerPos - (Vector2)transform.position).normalized);
 			var turnSpeed = 0f;
 			if(dot > .05f) turnSpeed = -_turnSpeed;
 			else if(dot < .05f) turnSpeed = _turnSpeed;

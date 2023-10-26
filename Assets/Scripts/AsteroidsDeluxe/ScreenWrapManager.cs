@@ -10,6 +10,8 @@ namespace AsteroidsDeluxe
 		private Bounds _cameraBounds = new Bounds();
 		public Bounds CameraBounds => _cameraBounds;
 
+		private Vector2[] _projectedPlayerPositions = new Vector2[9];
+
 		private void Awake()
 		{
 			ProcessScreenSize();
@@ -36,6 +38,8 @@ namespace AsteroidsDeluxe
 			}
 
 			foreach(var target in _targets) UpdateTarget(target);
+
+			UpdateProjectedPlayerPositions();
 		}
 
 		public void RegisterTarget(ICanScreenWrap target)
@@ -59,6 +63,32 @@ namespace AsteroidsDeluxe
 			}
 
 			_targets.RemoveAt(index);
+		}
+
+		/// <summary>
+		/// will compare the srcPosition to all of the "player projected positions"
+		/// useful for tracking the player across the edges of the screen
+		/// </summary>
+		/// <param name="srcPosition"></param>
+		/// <returns>the closts position to the srcPosition</returns>
+		public Vector2 GetClosestPlayerPosition(Vector2 srcPosition)
+		{
+			if(_projectedPlayerPositions == null) return GameManager.Instance.Player.transform.position;
+
+			var bestDist = Mathf.Infinity;
+			var bestPos = Vector2.zero;
+
+			foreach(var pos in _projectedPlayerPositions)
+			{
+				var dist = (srcPosition - pos).sqrMagnitude;
+                if (dist < bestDist)
+                {
+					bestDist = dist;
+					bestPos = pos;
+                }
+            }
+
+			return bestPos;
 		}
 
 		private void UpdateTarget(ICanScreenWrap target)
@@ -87,6 +117,65 @@ namespace AsteroidsDeluxe
 				target.transform.localPosition = new Vector3(targetPosition.x, targetPosition.y * -1, targetPosition.z);
 				return;
 			}
+		}
+
+		private void UpdateProjectedPlayerPositions()
+		{
+			var player = GameManager.Instance.Player;
+			if(player == null) return;
+
+			//start with the basic position
+			var playerPos = player.transform.localPosition;
+			_projectedPlayerPositions[0] = playerPos;
+
+			//now reflect that position over each edge and diagonal
+
+			var px = playerPos.x;
+			var py = playerPos.y;
+
+			//Left
+			_projectedPlayerPositions[1] = new Vector2(_cameraBounds.min.x - (_cameraBounds.max.x - px), py);
+			//Right
+			_projectedPlayerPositions[2] = new Vector2(_cameraBounds.max.x + (px - _cameraBounds.min.x), py);
+			//Up
+			_projectedPlayerPositions[3] = new Vector2(px, _cameraBounds.max.y + (py - _cameraBounds.min.y));
+			//Down
+			_projectedPlayerPositions[4] = new Vector2(px, _cameraBounds.min.y - (_cameraBounds.max.y - py));
+
+			//Diagonal positions are just combinations
+			//TL
+			_projectedPlayerPositions[5] = new Vector2(_projectedPlayerPositions[1].x, _projectedPlayerPositions[3].y);
+			//TR
+			_projectedPlayerPositions[6] = new Vector2(_projectedPlayerPositions[2].x, _projectedPlayerPositions[3].y);
+			//BR
+			_projectedPlayerPositions[7] = new Vector2(_projectedPlayerPositions[2].x, _projectedPlayerPositions[4].y);
+			//BL
+			_projectedPlayerPositions[8] = new Vector2(_projectedPlayerPositions[1].x, _projectedPlayerPositions[4].y);
+		}
+
+		private void OnDrawGizmos()
+		{
+			Gizmos.color = Color.yellow;
+
+			//Draw Projected Positions
+			if(_projectedPlayerPositions != null)
+			{
+				for(int i = 1; i < _projectedPlayerPositions.Length; i++)
+				{
+					var position = _projectedPlayerPositions[i];
+					Gizmos.DrawSphere(position, .25f);
+				}
+			}
+
+			//Draw Tracked Bounds
+			foreach(var target in _targets)
+			{
+				var bounds = target.Renderer.bounds;
+				Gizmos.DrawWireCube(bounds.center, bounds.size);
+			}
+
+			Gizmos.color = Color.white;
+
 		}
 	}
 }

@@ -95,7 +95,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: -5465933318293538426}
   - component: {fileID: -5885668823286132794}
   - component: {fileID: 1541216695725415109}
+  - component: {fileID: 8898450031201772709}
   m_Layer: 0
   m_Name: ChaserSmall
   m_TagString: Chaser
@@ -157,7 +158,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566835486359638384}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c067960467d77624db45d930d4118a3e, type: 3}
   m_Name: 
@@ -167,7 +168,6 @@ MonoBehaviour:
   _movement: {fileID: -5465933318293538426}
   _destroyable: {fileID: -5885668823286132794}
   _rigidbody: {fileID: 1541216695725415109}
-  _invulnerabilityWindow: 0.5
   _turnSpeed: 100
   _boostAcceleration: 5
   _children: []
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566835486359638384}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 629625ad2b6c8794b9e98d7c2dc71754, type: 3}
   m_Name: 
@@ -226,3 +226,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8898450031201772709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566835486359638384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a68d0ffbe0c7345bd1f8ee568e97e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _invulnerabilityWindow: 0.5
+  _rigidbody: {fileID: 1541216695725415109}
