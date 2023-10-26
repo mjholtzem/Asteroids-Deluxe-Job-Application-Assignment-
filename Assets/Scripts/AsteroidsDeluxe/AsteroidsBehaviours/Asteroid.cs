@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace AsteroidsDeluxe
@@ -9,6 +10,9 @@ namespace AsteroidsDeluxe
 		[SerializeField] RandomDrift _randomDrift;
 		public RandomDrift RandomDrift => _randomDrift;
 
+		[Header("FX")]
+		[SerializeField] private GameObject _destroyFXPrefab;
+
 		[Header("Children")]
 		[SerializeField] private Asteroid _childPrefab;
 		[SerializeField] private int _spawnCount;
@@ -16,6 +20,11 @@ namespace AsteroidsDeluxe
 		protected override void OnEnable()
 		{
 			_randomDrift.RandomizeVelocity();
+
+			//Tween In
+			//transform.localScale = Vector3.one * .5f;
+			//transform.DOScale(1, .15f).SetEase(Ease.InQuad);
+
 			base.OnEnable();
 		}
 
@@ -31,6 +40,7 @@ namespace AsteroidsDeluxe
 
 			Dispatch.Fire(destructionMessage);
 		
+			if(_destroyFXPrefab) Instantiate(_destroyFXPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

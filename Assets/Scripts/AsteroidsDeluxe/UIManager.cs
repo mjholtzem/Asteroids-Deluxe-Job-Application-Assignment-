@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
 
 		var sequence = DOTween.Sequence();
 		sequence.Append(_waveIntroLabel.DOFade(1, 1.5f).SetEase(Ease.InOutQuad));
+		sequence.AppendInterval(1);
 		sequence.Append(_waveIntroLabel.DOFade(0, .25f).SetEase(Ease.InOutQuad));
 		sequence.OnComplete(() => _waveIntroLabel.gameObject.SetActive(false));
 

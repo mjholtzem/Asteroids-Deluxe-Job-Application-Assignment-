@@ -171,8 +171,8 @@ MonoBehaviour:
   _mainRenderer: {fileID: 8817423249427275760}
   _movement: {fileID: 8817423249781025559}
   _destroyable: {fileID: 3076441000390677018}
-  _rigidbody: {fileID: 7039846876765771478}
   _randomDrift: {fileID: 8633329984357745151}
+  _destroyFXPrefab: {fileID: 3954117194980631443, guid: 76389f39577e23449863a2a1702785c5, type: 3}
   _childPrefab: {fileID: 8817423249781025558, guid: 94e2cdfb208364c4e91d050e9a506e1b, type: 3}
   _spawnCount: 2
 --- !u!114 &8817423249781025559

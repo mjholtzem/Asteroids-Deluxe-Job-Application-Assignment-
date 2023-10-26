@@ -237,6 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a68d0ffbe0c7345bd1f8ee568e97e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invulnerabilityWindow: 0.5
+  _invulnerabilityWindow: 0.25
   _rigidbody: {fileID: 1541216695725415109}
   _asteroidsBehaviour: {fileID: -6834387138587751309}

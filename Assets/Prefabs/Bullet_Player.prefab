@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 753176862732089762}
   - component: {fileID: 753176862732089772}
-  - component: {fileID: 753176862732089773}
+  - component: {fileID: 6423777597162658226}
   m_Layer: 0
   m_Name: ship_B
   m_TagString: Untagged
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &753176862732089773
-PolygonCollider2D:
+--- !u!70 &6423777597162658226
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -99,21 +99,8 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.38}
-      - {x: -0.19999999, y: -0.17}
-      - {x: 0, y: -0.35999998}
-      - {x: 0.19999999, y: -0.17}
+  m_Size: {x: 0.64, y: 0.59}
+  m_Direction: 0
 --- !u!1 &753176863102262430
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +153,6 @@ MonoBehaviour:
   _mainRenderer: {fileID: 753176862732089772}
   _movement: {fileID: 753176863102262425}
   _destroyable: {fileID: -6613189430996535731}
-  _rigidbody: {fileID: 753176863102262424}
 --- !u!114 &753176863102262425
 MonoBehaviour:
   m_ObjectHideFlags: 0
