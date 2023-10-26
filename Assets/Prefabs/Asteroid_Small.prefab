@@ -166,9 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2091647d0ca7adf479f2ce27bedbd80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 2
-  _movement: {fileID: 8817423249781025559}
+  _objectType: 7
   _mainRenderer: {fileID: 4460905471122524296}
+  _movement: {fileID: 8817423249781025559}
   _destroyable: {fileID: 3076441000390677018}
   _velocityMin: 1.125
   _velocityMax: 2.25

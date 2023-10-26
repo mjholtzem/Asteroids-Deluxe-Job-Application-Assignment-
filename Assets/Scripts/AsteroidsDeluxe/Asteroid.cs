@@ -2,17 +2,8 @@ using UnityEngine;
 
 namespace AsteroidsDeluxe
 {
-	[RequireComponent(typeof(Movement))]
-	[RequireComponent(typeof(Destroyable))]
-	public class Asteroid : MonoBehaviour, ICanScreenWrap
+	public class Asteroid : AsteroidsBehaviour
     {
-		[SerializeField] private ObjectType _type;
-
-        [Header("References")]
-        [SerializeField] private Movement _movement;
-		[SerializeField] private SpriteRenderer _mainRenderer;
-		[SerializeField] private Destroyable _destroyable;
-
 		[Header("Movement")]
 		[SerializeField][Min(0)]
 		private float _velocityMin;
@@ -28,21 +19,10 @@ namespace AsteroidsDeluxe
 		[SerializeField] private Asteroid _childPrefab;
 		[SerializeField] private int _spawnCount;
 
-		public Renderer Renderer => _mainRenderer;
-		public Vector2 Velocity => _movement.currentVelocity;
-		public Destroyable Destroyable => _destroyable;
-
-		private void OnEnable()
+		protected override void OnEnable()
 		{
-			GameManager.Instance.ScreenWrapManager.RegisterTarget(this);
-			_destroyable.onCollisionDamage.AddListener(OnAsteroidDestroyed);
 			RandomizeVelocity();
-		}
-
-		private void OnDisable()
-		{
-			GameManager.Instance.ScreenWrapManager.RemoveTarget(this);
-			_destroyable.onCollisionDamage.RemoveListener(OnAsteroidDestroyed);
+			base.OnEnable();
 		}
 
 		public void RandomizeVelocity()
@@ -59,7 +39,7 @@ namespace AsteroidsDeluxe
 			_movement.currentAngularVelocity = angularVelocity;
 		}
 
-		private void OnAsteroidDestroyed()
+		protected override void OnCollisionDamage()
 		{
 			if(_spawnCount > 0 && _childPrefab != null)
 			{
@@ -69,8 +49,8 @@ namespace AsteroidsDeluxe
 				}
 			}
 
-			Dispatch.Fire(new AsteroidDestroyedMessage { asteroid = this});
-			Dispatch.Fire(new ObjectDestroyedMessage { type = _type });
+			Dispatch.Fire(new AsteroidDestroyedMessage { asteroid = this });
+			Dispatch.Fire(new ObjectDestroyedMessage { type = ObjectType });
 			Destroy(gameObject);
 		}
 	}

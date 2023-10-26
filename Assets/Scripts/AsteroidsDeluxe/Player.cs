@@ -2,16 +2,11 @@ using UnityEngine;
 
 namespace AsteroidsDeluxe
 {
-	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(Gun))]
-    [RequireComponent(typeof(Destroyable))]
-	public class Player : MonoBehaviour, ICanScreenWrap
+	public class Player : AsteroidsBehaviour
     {
         [Header("References")]
-        [SerializeField] private SpriteRenderer _mainRenderer;
-        [SerializeField] private Movement _movement;
         [SerializeField] private Gun _gun;
-        [SerializeField] private Destroyable _destroyable;
 
         [Header("Movement")]
         [SerializeField] private float _turnSpeed;
@@ -19,9 +14,6 @@ namespace AsteroidsDeluxe
 
         [Header("FX")]
         [SerializeField] private Transform _boostFX;
-
-		public Renderer Renderer => _mainRenderer;
-		public Vector2 Velocity => _movement.currentVelocity;
 
 		private void Start()
         {
@@ -33,11 +25,6 @@ namespace AsteroidsDeluxe
             _movement.currentVelocity = Vector2.zero;
             _movement.currentAngularVelocity = 0;
             _boostFX.gameObject.SetActive(false);
-
-            if(isRespawn) return;
-
-            _destroyable.onCollisionDamage.AddListener(OnDamageCollision);
-            GameManager.Instance.ScreenWrapManager.RegisterTarget(this);
         }
 
         private void Update()
@@ -78,13 +65,13 @@ namespace AsteroidsDeluxe
             }
         }
 
-		private void OnDamageCollision()
-        {
-            //check for shield?
+		protected override void OnCollisionDamage()
+		{
+			//check for shield?
 
-            Debug.Log("Ship was destroyed!!!");
-            Dispatch.Fire(new PlayerDestroyedMessage());
-            gameObject.SetActive(false);
-        }
+			Debug.Log("Ship was destroyed!!!");
+			Dispatch.Fire(new PlayerDestroyedMessage());
+			gameObject.SetActive(false);
+		}
 	}
 }

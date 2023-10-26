@@ -162,8 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e71126cac51eb4ead0ce6d6f95b3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement: {fileID: 753176863102262425}
+  _objectType: 1
   _mainRenderer: {fileID: 753176862732089772}
+  _movement: {fileID: 753176863102262425}
   _destroyable: {fileID: -6613189430996535731}
 --- !u!114 &753176863102262425
 MonoBehaviour:
@@ -216,6 +217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionTags:
   - Asteroid
-  onDestroyed:
+  onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []
