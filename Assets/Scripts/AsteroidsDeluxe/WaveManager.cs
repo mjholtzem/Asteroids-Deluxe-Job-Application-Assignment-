@@ -36,7 +36,6 @@ namespace AsteroidsDeluxe
 		private void Start()
 		{
             Dispatch.Listen<ObjectDestroyedMessage>(OnObjectDestroyed);
-            SpawnWave();
 		}
 
 		private void OnDestroy()
@@ -79,14 +78,13 @@ namespace AsteroidsDeluxe
             }
         }
 
-        private async void SpawnWave()
+        public async void SpawnWave()
         {
-            await Task.Delay(TimeSpan.FromSeconds(_waveStartDelay));
-
-            _waveCount++;
-
+			_waveCount++;
 			Debug.Log($"Wave {_waveCount} is starting!!!");
-            Dispatch.Fire(new WaveStartedMessage { waveCount = _waveCount });
+			Dispatch.Fire(new WaveStartedMessage { waveCount = _waveCount });
+
+			await Task.Delay(TimeSpan.FromSeconds(_waveStartDelay));
 
 			var t = Mathf.InverseLerp(1, _waveNumberForMaxAsteroidCount, _waveCount);
             var asteroidCount = Mathf.RoundToInt(Mathf.Lerp(_minAsteroidCount, _maxAsteroidCount, t));

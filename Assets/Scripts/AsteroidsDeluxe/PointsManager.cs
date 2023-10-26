@@ -59,7 +59,6 @@ namespace AsteroidsDeluxe
 
 			_totalPoints += points;
 			Dispatch.Fire(new PointsAwardedMessage { totalPoints = _totalPoints, pointsAwarded = points});
-			Debug.Log($"Points: awarded - {points}, total - {_totalPoints}");
 		}
 	}
 }

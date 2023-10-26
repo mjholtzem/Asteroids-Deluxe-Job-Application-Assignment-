@@ -22,6 +22,7 @@ namespace AsteroidsDeluxe
 		private void Start()
 		{
 			Dispatch.Listen<ObjectDestroyedMessage>(OnObjectDestroyed);
+			BeginGame();
 		}
 
 		private void OnDestroy()
@@ -42,6 +43,13 @@ namespace AsteroidsDeluxe
 			_player.transform.localPosition = Vector3.zero;
 			_player.gameObject.SetActive(true);
 			_player.Init();
+		}
+
+		private async void BeginGame()
+		{
+			//just a little delay to make sure everything has started up. Perhaps in the future this would be triggered by some MainMenu UI interaction or something
+			await Task.Delay(TimeSpan.FromSeconds(.25f));
+			_waveManager.SpawnWave();
 		}
 	}
 }
