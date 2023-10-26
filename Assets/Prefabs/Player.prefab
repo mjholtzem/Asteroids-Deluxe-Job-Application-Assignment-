@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _invulnerabilityWindow: 1
   _rigidbody: {fileID: 6244751669592573561}
+  _asteroidsBehaviour: {fileID: 8253563685021643223}
 --- !u!1 &8253563685379166744
 GameObject:
   m_ObjectHideFlags: 0

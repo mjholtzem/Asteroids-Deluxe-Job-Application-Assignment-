@@ -167,7 +167,6 @@ MonoBehaviour:
   _mainRenderer: {fileID: 3011051892706485752}
   _movement: {fileID: -5465933318293538426}
   _destroyable: {fileID: -5885668823286132794}
-  _rigidbody: {fileID: 1541216695725415109}
   _turnSpeed: 100
   _boostAcceleration: 5
   _children: []
@@ -240,3 +239,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _invulnerabilityWindow: 0.5
   _rigidbody: {fileID: 1541216695725415109}
+  _asteroidsBehaviour: {fileID: -6834387138587751309}
