@@ -4,6 +4,7 @@ namespace AsteroidsDeluxe
 {
 	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(Destroyable))]
+	[RequireComponent(typeof(Rigidbody2D))]
 	public abstract class AsteroidsBehaviour : MonoBehaviour, ICanScreenWrap
 	{
 		[SerializeField] private ObjectType _objectType;
@@ -12,7 +13,12 @@ namespace AsteroidsDeluxe
 		[Header("Base References")]
 		[SerializeField] private Renderer _mainRenderer;
 		[SerializeField] protected Movement _movement;
+		public Movement Movement => _movement;
+
 		[SerializeField] protected Destroyable _destroyable;
+
+		[SerializeField] private Rigidbody2D _rigidbody;
+		public Rigidbody2D Rigidbody => _rigidbody;
 
 		public Renderer Renderer => _mainRenderer;
 		public Vector2 Velocity => _movement.currentVelocity;
@@ -31,7 +37,7 @@ namespace AsteroidsDeluxe
 		protected virtual void OnDisable()
 		{
 			_destroyable.onCollisionDamage.RemoveListener(OnCollisionDamage);
-			GameManager.Instance.ScreenWrapManager.RemoveTarget(this);
+			if(GameManager.Instance && GameManager.Instance.ScreenWrapManager) GameManager.Instance.ScreenWrapManager.RemoveTarget(this);
 		}
 
 		protected abstract void OnCollisionDamage(AsteroidsBehaviour destructionSource, ObjectDestroyedMessage message);
@@ -39,6 +45,8 @@ namespace AsteroidsDeluxe
 		protected virtual void Reset()
 		{
 			_movement = GetComponent<Movement>();
+			_destroyable = GetComponent<Destroyable>();
+			_rigidbody = GetComponent<Rigidbody2D>();
 		}
 	}
 }

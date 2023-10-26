@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 8817423249781025559}
   - component: {fileID: 7039846876765771478}
   - component: {fileID: 3076441000390677018}
+  - component: {fileID: 978566239597848933}
   m_Layer: 0
   m_Name: Asteroid_Small
   m_TagString: Asteroid
@@ -170,10 +171,8 @@ MonoBehaviour:
   _mainRenderer: {fileID: 4460905471122524296}
   _movement: {fileID: 8817423249781025559}
   _destroyable: {fileID: 3076441000390677018}
-  _velocityMin: 1.125
-  _velocityMax: 2.25
-  _angularVelocityMin: 30
-  _angularVelocityMax: 100
+  _rigidbody: {fileID: 7039846876765771478}
+  _randomDrift: {fileID: 978566239597848933}
   _childPrefab: {fileID: 0}
   _spawnCount: 0
 --- !u!114 &8817423249781025559
@@ -231,3 +230,20 @@ MonoBehaviour:
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &978566239597848933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817423249781025561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893700530488a194ea9c80e2d5385c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: 8817423249781025559}
+  _velocityMin: 1.125
+  _velocityMax: 2.25
+  _angularVelocityMin: 30
+  _angularVelocityMax: 100

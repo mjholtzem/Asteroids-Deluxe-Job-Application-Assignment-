@@ -171,7 +171,13 @@ MonoBehaviour:
   _minAsteroidCount: 4
   _maxAsteroidCount: 8
   _waveNumberForMaxAsteroidCount: 10
+  _maxDeathStarDelay: 15
+  _minDeathStarDelay: 5
+  _maxDeathStarInterval: 30
+  _minDeathStarInterval: 10
+  _waveNumberForMinDeathStarTime: 30
   _asteroidPrefabLarge: {fileID: 8817423249781025558, guid: c9357fee4aad93f428951b9337ecbde4, type: 3}
+  _deathStarPrefab: {fileID: 5144770303698927118, guid: bd7a8ee360e60864f8b8f01d9f275e31, type: 3}
 --- !u!1 &358672616
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +722,9 @@ MonoBehaviour:
   _pointsAsteroidLarge: 20
   _pointsAsteroidMedium: 50
   _pointsAsteroidSmall: 100
+  _pointsDeathStar: 50
+  _pointsChaserLarge: 100
+  _pointsChaserSmall: 200
 --- !u!4 &1785939939
 Transform:
   m_ObjectHideFlags: 0

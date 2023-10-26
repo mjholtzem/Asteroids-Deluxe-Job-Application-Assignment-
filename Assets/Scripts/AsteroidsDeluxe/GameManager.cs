@@ -12,6 +12,7 @@ namespace AsteroidsDeluxe
 
 		[Header("References")]
 		[SerializeField] private Player _player;
+		public Player Player => _player;
 		[SerializeField] private ScreenWrapManager _screenWrapManager;
 		[SerializeField] private WaveManager _waveManager;
 

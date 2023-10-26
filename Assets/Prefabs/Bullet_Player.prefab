@@ -166,6 +166,7 @@ MonoBehaviour:
   _mainRenderer: {fileID: 753176862732089772}
   _movement: {fileID: 753176863102262425}
   _destroyable: {fileID: -6613189430996535731}
+  _rigidbody: {fileID: 753176863102262424}
 --- !u!114 &753176863102262425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionTags:
   - Asteroid
+  - DeathStar
+  - Chaser
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []

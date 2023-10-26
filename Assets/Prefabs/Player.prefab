@@ -229,10 +229,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d14b8a0de9e944e89f03c0260e9f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectType: 0
   _mainRenderer: {fileID: 8253563684106059451}
   _movement: {fileID: 6674557944435304876}
-  _gun: {fileID: 5346468155441333315}
   _destroyable: {fileID: 6373195332990462999}
+  _rigidbody: {fileID: 6244751669592573561}
+  _gun: {fileID: 5346468155441333315}
   _turnSpeed: 250
   _boostAcceleration: 15
   _boostFX: {fileID: 8253563686130847263}
@@ -305,7 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionTags:
   - Asteroid
-  onDestroyed:
+  - DeathStar
+  - Chaser
+  onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8253563685379166744

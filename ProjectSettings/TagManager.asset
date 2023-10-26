@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Asteroid
+  - DeathStar
+  - Chaser
   layers:
   - Default
   - TransparentFX
