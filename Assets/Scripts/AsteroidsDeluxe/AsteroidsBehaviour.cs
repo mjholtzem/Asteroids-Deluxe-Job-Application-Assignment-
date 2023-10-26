@@ -17,6 +17,11 @@ namespace AsteroidsDeluxe
 		public Renderer Renderer => _mainRenderer;
 		public Vector2 Velocity => _movement.currentVelocity;
 
+		protected virtual void Start()
+		{
+			_destroyable.Init(this);
+		}
+
 		protected virtual void OnEnable()
 		{
 			_destroyable.onCollisionDamage.AddListener(OnCollisionDamage);
@@ -29,7 +34,7 @@ namespace AsteroidsDeluxe
 			GameManager.Instance.ScreenWrapManager.RemoveTarget(this);
 		}
 
-		protected abstract void OnCollisionDamage();
+		protected abstract void OnCollisionDamage(AsteroidsBehaviour destructionSource, ObjectDestroyedMessage message);
 
 		protected virtual void Reset()
 		{

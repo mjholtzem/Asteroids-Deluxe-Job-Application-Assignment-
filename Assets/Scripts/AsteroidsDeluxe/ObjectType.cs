@@ -2,6 +2,8 @@ namespace AsteroidsDeluxe
 {
     public enum ObjectType
     {
+        None = -1,
+
         PlayerShip = 0,
         PlayerBullet = 1,
 

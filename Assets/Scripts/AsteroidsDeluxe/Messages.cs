@@ -1,10 +1,12 @@
 namespace AsteroidsDeluxe
 {
-    public class ObjectDestroyedMessage { public ObjectType type; };
-
-    public class AsteroidDestroyedMessage { public Asteroid asteroid; }
-
-    public class PlayerDestroyedMessage { }
+    public class ObjectDestroyedMessage
+    {
+        public AsteroidsBehaviour destroyedObject;
+        public AsteroidsBehaviour destroyedByObject;
+        public ObjectType DestroyedType => destroyedObject?.ObjectType ?? ObjectType.None;
+        public ObjectType DestroyedByType => destroyedByObject?.ObjectType ?? ObjectType.None;
+	};
 
     public class PointsAwardedMessage { public int totalPoints; public int pointsAwarded; }
 

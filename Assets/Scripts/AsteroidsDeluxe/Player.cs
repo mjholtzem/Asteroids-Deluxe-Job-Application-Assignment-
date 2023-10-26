@@ -15,12 +15,13 @@ namespace AsteroidsDeluxe
         [Header("FX")]
         [SerializeField] private Transform _boostFX;
 
-		private void Start()
+		protected override void Start()
         {
+            base.Start();
             Init();
         }
 
-        public void Init(bool isRespawn = false)
+        public void Init()
         {
             _movement.currentVelocity = Vector2.zero;
             _movement.currentAngularVelocity = 0;
@@ -65,12 +66,12 @@ namespace AsteroidsDeluxe
             }
         }
 
-		protected override void OnCollisionDamage()
+		protected override void OnCollisionDamage(AsteroidsBehaviour destructionSource, ObjectDestroyedMessage destructionMessage)
 		{
 			//check for shield?
 
 			Debug.Log("Ship was destroyed!!!");
-			Dispatch.Fire(new PlayerDestroyedMessage());
+			Dispatch.Fire(destructionMessage);
 			gameObject.SetActive(false);
 		}
 	}

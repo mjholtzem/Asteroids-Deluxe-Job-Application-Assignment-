@@ -18,19 +18,19 @@ namespace AsteroidsDeluxe
         [SerializeField] private Asteroid _asteroidPrefabLarge;
 
         private Camera _camera;
-        private List<Asteroid> _asteroids = new();
+        private List<AsteroidsBehaviour> _asteroids = new();
         private int _waveCount = 0;
 
 		private void Start()
 		{
             _camera = Camera.main;
-            Dispatch.Listen<AsteroidDestroyedMessage>(OnAsteroidDestroyed);
+            Dispatch.Listen<ObjectDestroyedMessage>(OnObjectDestroyed);
             SpawnWave();
 		}
 
 		private void OnDestroy()
 		{
-			Dispatch.Unlisten<AsteroidDestroyedMessage>(OnAsteroidDestroyed);
+			Dispatch.Unlisten<ObjectDestroyedMessage>(OnObjectDestroyed);
 		}
 
 		public Asteroid SpawnAsteroid(Asteroid asteroidPrefab, Vector2 position)
@@ -40,9 +40,13 @@ namespace AsteroidsDeluxe
             return asteroid;
         }
 
-        private void OnAsteroidDestroyed(AsteroidDestroyedMessage message)
+        private void OnObjectDestroyed(ObjectDestroyedMessage message)
         {
-            _asteroids.Remove(message.asteroid);
+            if(message.DestroyedType != ObjectType.AsteroidLarge
+                && message.DestroyedType != ObjectType.AsteroidMedium
+                && message.DestroyedType != ObjectType.AsteroidSmall) return;
+
+            _asteroids.Remove(message.destroyedObject);
 
             if(_asteroids.Count == 0)
             {

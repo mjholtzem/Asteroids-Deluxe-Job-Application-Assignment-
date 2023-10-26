@@ -20,16 +20,18 @@ namespace AsteroidsDeluxe
 
 		private void Start()
 		{
-			Dispatch.Listen<PlayerDestroyedMessage>(OnPlayerDestroyed);
+			Dispatch.Listen<ObjectDestroyedMessage>(OnObjectDestroyed);
 		}
 
 		private void OnDestroy()
 		{
-			Dispatch.Unlisten<PlayerDestroyedMessage>(OnPlayerDestroyed);
+			Dispatch.Unlisten<ObjectDestroyedMessage>(OnObjectDestroyed);
 		}
 
-		private async void OnPlayerDestroyed(PlayerDestroyedMessage message)
+		private async void OnObjectDestroyed(ObjectDestroyedMessage message)
 		{
+			if(message.DestroyedType != ObjectType.PlayerShip) return;
+
 			await RespawnPlayer();
 		}
 
@@ -38,7 +40,7 @@ namespace AsteroidsDeluxe
 			await Task.Delay(TimeSpan.FromSeconds(_respawnDelay));
 			_player.transform.localPosition = Vector3.zero;
 			_player.gameObject.SetActive(true);
-			_player.Init(true);
+			_player.Init();
 		}
 	}
 }

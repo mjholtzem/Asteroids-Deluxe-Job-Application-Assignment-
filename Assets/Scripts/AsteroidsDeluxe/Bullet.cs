@@ -15,10 +15,12 @@ namespace AsteroidsDeluxe
 		private void Update()
 		{
 			_autoDestroyTimer -= Time.deltaTime;
-			if(_autoDestroyTimer <= 0) OnCollisionDamage();
+			if(_autoDestroyTimer <= 0)
+			{
+				OnCollisionDamage(this, new ObjectDestroyedMessage { destroyedObject = this, destroyedByObject = null});
+			}
 		}
-
-		protected override void OnCollisionDamage()
+		protected override void OnCollisionDamage(AsteroidsBehaviour destructionSource, ObjectDestroyedMessage message)
 		{
 			Destroy(gameObject);
 		}

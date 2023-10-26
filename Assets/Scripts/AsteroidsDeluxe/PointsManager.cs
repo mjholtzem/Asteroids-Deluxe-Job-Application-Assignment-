@@ -23,7 +23,10 @@ namespace AsteroidsDeluxe
 
 		private void OnObjectDestroyed(ObjectDestroyedMessage message)
 		{
-			switch(message.type)
+			//only give points for things shot by the player. We don't care about crashes or asteroids shot by enemies
+			if(message.DestroyedByType != ObjectType.PlayerBullet) return;
+
+			switch(message.DestroyedType)
 			{
 				case ObjectType.AsteroidLarge:
 					AwardPoints(_pointsAsteroidLarge);

@@ -227,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionTags:
   - Bullet
+  - Player
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []

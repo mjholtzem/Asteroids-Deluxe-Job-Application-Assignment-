@@ -39,7 +39,7 @@ namespace AsteroidsDeluxe
 			_movement.currentAngularVelocity = angularVelocity;
 		}
 
-		protected override void OnCollisionDamage()
+		protected override void OnCollisionDamage(AsteroidsBehaviour destructionSource, ObjectDestroyedMessage destructionMessage)
 		{
 			if(_spawnCount > 0 && _childPrefab != null)
 			{
@@ -49,8 +49,8 @@ namespace AsteroidsDeluxe
 				}
 			}
 
-			Dispatch.Fire(new AsteroidDestroyedMessage { asteroid = this });
-			Dispatch.Fire(new ObjectDestroyedMessage { type = ObjectType });
+			Dispatch.Fire(destructionMessage);
+		
 			Destroy(gameObject);
 		}
 	}
