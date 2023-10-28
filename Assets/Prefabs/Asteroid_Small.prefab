@@ -171,7 +171,7 @@ MonoBehaviour:
   _mainRenderer: {fileID: 4460905471122524296}
   _movement: {fileID: 8817423249781025559}
   _destroyable: {fileID: 3076441000390677018}
-  _randomDrift: {fileID: 978566239597848933}
+  _randomMovementController: {fileID: 978566239597848933}
   _destroyFXPrefab: {fileID: 3954117194980631443, guid: 68d6378eb2691634c9e18e7f7ff14098, type: 3}
   _childPrefab: {fileID: 0}
   _spawnCount: 0
@@ -227,6 +227,7 @@ MonoBehaviour:
   _collisionTags:
   - Bullet
   - Player
+  - SaucerBullet
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []

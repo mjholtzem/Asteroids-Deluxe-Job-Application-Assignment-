@@ -8,6 +8,8 @@ TagManager:
   - Asteroid
   - DeathStar
   - Chaser
+  - Saucer
+  - SaucerBullet
   layers:
   - Default
   - TransparentFX

@@ -2,12 +2,8 @@ using UnityEngine;
 
 namespace AsteroidsDeluxe
 {
-	[RequireComponent(typeof(Movement))]
-    public class RandomDrift : MonoBehaviour
+    public class RandomDrift : RandomMovementController
     {
-		[Header("References")]
-		[SerializeField] private Movement _movement;
-
 		[Header("Movement")]
 		[SerializeField]
 		[Min(0)]
@@ -23,7 +19,7 @@ namespace AsteroidsDeluxe
 		[Min(0)]
 		private float _angularVelocityMax;
 
-		public void RandomizeVelocity()
+		public override void RandomizeVelocity()
 		{
 			//Randomize Velocity
 			var speed = Random.Range(_velocityMin, _velocityMax);
@@ -35,11 +31,6 @@ namespace AsteroidsDeluxe
 			var angularVelocity = Random.Range(_angularVelocityMin, _angularVelocityMax);
 			if(Random.value > .5f) angularVelocity *= -1;
 			_movement.currentAngularVelocity = angularVelocity;
-		}
-
-		private void Reset()
-		{
-			_movement = GetComponent<Movement>();
 		}
 	}
 }

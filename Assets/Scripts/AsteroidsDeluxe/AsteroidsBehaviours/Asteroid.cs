@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace AsteroidsDeluxe
@@ -7,8 +6,8 @@ namespace AsteroidsDeluxe
 	public class Asteroid : AsteroidsBehaviour
     {
 		[Header("References")]
-		[SerializeField] RandomDrift _randomDrift;
-		public RandomDrift RandomDrift => _randomDrift;
+		[SerializeField] RandomMovementController _randomMovementController;
+		public RandomMovementController RandomMovementController => _randomMovementController;
 
 		[Header("FX")]
 		[SerializeField] private GameObject _destroyFXPrefab;
@@ -19,11 +18,7 @@ namespace AsteroidsDeluxe
 
 		protected override void OnEnable()
 		{
-			_randomDrift.RandomizeVelocity();
-
-			//Tween In
-			//transform.localScale = Vector3.one * .5f;
-			//transform.DOScale(1, .15f).SetEase(Ease.InQuad);
+			_randomMovementController.RandomizeVelocity();
 
 			base.OnEnable();
 		}

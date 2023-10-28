@@ -11,6 +11,8 @@ namespace AsteroidsDeluxe
 		[SerializeField] private int _pointsDeathStar;
 		[SerializeField] private int _pointsChaserLarge;
 		[SerializeField] private int _pointsChaserSmall;
+		[SerializeField] private int _pointsSaucerLarge;
+		[SerializeField] private int _pointsSaucerSmall;
 
 		private int _totalPoints = 0;
 
@@ -48,6 +50,12 @@ namespace AsteroidsDeluxe
 					break;
 				case ObjectType.ChaserSmall:
 					AwardPoints(_pointsChaserSmall);
+					break;
+				case ObjectType.SaucerLarge:
+					AwardPoints(_pointsSaucerLarge);
+					break;
+				case ObjectType.SaucerSmall:
+					AwardPoints(_pointsSaucerSmall);
 					break;
 				default: break;
 			}

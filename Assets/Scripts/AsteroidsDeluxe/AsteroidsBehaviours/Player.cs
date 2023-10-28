@@ -60,7 +60,7 @@ namespace AsteroidsDeluxe
 
         private void UpdateGun()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKey(KeyCode.Space))
             {
                 _gun.Fire(_movement.currentVelocity);
             }

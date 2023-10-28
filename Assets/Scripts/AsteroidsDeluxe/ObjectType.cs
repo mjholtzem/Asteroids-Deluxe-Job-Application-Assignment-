@@ -14,5 +14,9 @@ namespace AsteroidsDeluxe
         DeathStar = 10,
         ChaserLarge = 11,
         ChaserSmall = 12,
+
+        SaucerLarge = 15,
+        SaucerSmall = 16,
+        SaucerBullet = 17,
     }
 }

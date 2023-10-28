@@ -14,13 +14,15 @@ namespace AsteroidsDeluxe
 		[SerializeField] private float _fireCooldown = .1f;
 		[SerializeField] private float _bulletSpeed = 10f;
 		[SerializeField] private float _bulletLifetime = 1f;
+		[SerializeField] private float _maxBulletSpread = 0f;
 
 		private List<Bullet> _spawnedBullets = new();
 		private float _cooldownTimer = 0;
 
-		public bool CanFire => _spawnedBullets.Count < _maxBullets && _cooldownTimer <= 0;
+		public bool CanFire => (_spawnedBullets.Count < _maxBullets || _maxBullets < 0) 
+			&& _cooldownTimer <= 0;
 
-		private void Update()
+        private void Update()
 		{
 			CleanupBullets();
 
@@ -45,13 +47,28 @@ namespace AsteroidsDeluxe
 			}
 		}
 
-		public void Fire(Vector2 inheritedVelocity)
+		public void Fire(Vector2 inheritedVelocity, Vector2? targetPosition = null)
 		{
 			if(CanFire == false) return;
 
-			var bullet = Instantiate(_bulletPrefab, _spawnPosition.position, _spawnPosition.rotation);
+			var rotation = _spawnPosition.rotation;
+			if(targetPosition != null)
+            {
+				var direction = ((Vector3)targetPosition.Value - _spawnPosition.position).normalized;
+				rotation = Quaternion.LookRotation(Vector3.forward, direction);
+            }
+
+			if(_maxBulletSpread > 0)
+            {
+				rotation *= Quaternion.Euler(0, 0, Random.Range(-_maxBulletSpread, _maxBulletSpread));
+            }
+
+			var bullet = Instantiate(_bulletPrefab, _spawnPosition.position, rotation);
+
 			bullet.Init((_bulletSpeed * (Vector2)bullet.transform.up) + inheritedVelocity, _bulletLifetime);
 			_spawnedBullets.Add(bullet);
+
+			_cooldownTimer = _fireCooldown;
 		}
 	}
 }

@@ -28,6 +28,7 @@ namespace AsteroidsDeluxe
 		[SerializeField] private DeathStar _deathStarPrefab;
 
 		private List<AsteroidsBehaviour> _asteroids = new();
+		public List<AsteroidsBehaviour> Asteroids => _asteroids;
         private List<AsteroidsBehaviour> _enemies = new();
         private int _waveCount = 0;
 
@@ -105,7 +106,7 @@ namespace AsteroidsDeluxe
                 var directionToCenter = (Vector2.zero - (Vector2)asteroid.transform.localPosition).normalized;
                 while((Vector2.Dot(asteroid.Velocity.normalized, directionToCenter) < .7f) && Application.isPlaying)
                 {
-                    asteroid.RandomDrift.RandomizeVelocity();
+                    asteroid.RandomMovementController.RandomizeVelocity();
                 }
             }
 

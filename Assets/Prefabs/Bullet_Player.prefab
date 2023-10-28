@@ -206,6 +206,7 @@ MonoBehaviour:
   - Asteroid
   - DeathStar
   - Chaser
+  - Saucer
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []

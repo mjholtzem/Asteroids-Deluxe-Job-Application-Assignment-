@@ -176,6 +176,7 @@ MonoBehaviour:
   _collisionTags:
   - Player
   - Bullet
+  - SaucerBullet
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -259,6 +260,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6771257174842992915}
     m_Modifications:
+    - target: {fileID: -5885668823286132794, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
+      propertyPath: _collisionTags.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 566835486359638384, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
       propertyPath: m_Name
       value: ChaserSmall
@@ -332,6 +337,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6771257174842992915}
     m_Modifications:
+    - target: {fileID: -5885668823286132794, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
+      propertyPath: _collisionTags.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 566835486359638384, guid: 73e676e15059b7049b1071fe92d9bd89, type: 3}
       propertyPath: m_Name
       value: ChaserSmall
