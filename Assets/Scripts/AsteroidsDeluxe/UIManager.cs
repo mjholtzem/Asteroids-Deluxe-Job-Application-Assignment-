@@ -57,6 +57,6 @@ public class UIManager : MonoBehaviour
 
 	private void UpdateWaveText(int waveCount)
 	{
-		_waveCountLabel.text = $"Wave - {waveCount}";
+		_waveCountLabel.text = $"Wave {waveCount}";
 	}
 }

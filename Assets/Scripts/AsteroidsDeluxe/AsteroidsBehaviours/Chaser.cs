@@ -15,6 +15,9 @@ namespace AsteroidsDeluxe
 		[SerializeField] private List<Chaser> _children = new();
 		public List<Chaser> Children => _children;
 
+		[Header("FX")]
+		[SerializeField] private GameObject _destroyFXPrefab;
+
 		private Player _player;
 
 		protected override void Start()
@@ -68,7 +71,7 @@ namespace AsteroidsDeluxe
 			}
 
 			Dispatch.Fire(message);
-
+			if(_destroyFXPrefab) Instantiate(_destroyFXPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

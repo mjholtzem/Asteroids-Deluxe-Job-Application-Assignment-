@@ -170,6 +170,7 @@ MonoBehaviour:
   _turnSpeed: 100
   _boostAcceleration: 5
   _children: []
+  _destroyFXPrefab: {fileID: 4359276565833166516, guid: 2c73f7b65a0c86d46bcb7c200f1c7a6f, type: 3}
 --- !u!114 &-5465933318293538426
 MonoBehaviour:
   m_ObjectHideFlags: 0

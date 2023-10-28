@@ -14,8 +14,9 @@ namespace AsteroidsDeluxe
 
         [Header("FX")]
         [SerializeField] private Transform _boostFX;
+        [SerializeField] private GameObject _destroyFXPrefab;
 
-		protected override void Start()
+        protected override void Start()
         {
             base.Start();
             Init();
@@ -68,7 +69,8 @@ namespace AsteroidsDeluxe
 
 			Debug.Log("Ship was destroyed!!!");
 			Dispatch.Fire(destructionMessage);
-			gameObject.SetActive(false);
+            if(_destroyFXPrefab) Instantiate(_destroyFXPrefab, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
 		}
 	}
 }

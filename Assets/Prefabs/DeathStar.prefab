@@ -209,6 +209,7 @@ MonoBehaviour:
   - {fileID: 6732074288176304574}
   - {fileID: 6067537889535193640}
   - {fileID: 6067537890150907991}
+  _destroyFXPrefab: {fileID: 3954117194980631443, guid: cfda79dc140c83e4b8747d824e2c2e72, type: 3}
 --- !u!114 &5144770303698927119
 MonoBehaviour:
   m_ObjectHideFlags: 0

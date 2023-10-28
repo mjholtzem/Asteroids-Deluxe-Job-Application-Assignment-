@@ -87,8 +87,9 @@ MonoBehaviour:
   _movement: {fileID: 8645055730404534363}
   _destroyable: {fileID: 8645055730404534364}
   _gun: {fileID: 8645055730404534362}
-  _sequenceDelay: 3
-  _targetingSequence: 050000000500000000000000
+  _sequenceDelay: 1
+  _targetingSequence: 05000000050000000500000000000000
+  _destroyFXPrefab: {fileID: 4359276565833166516, guid: 43c6e6299f6275f4289b88d292562940, type: 3}
 --- !u!114 &8645055730404534362
 MonoBehaviour:
   m_ObjectHideFlags: 0

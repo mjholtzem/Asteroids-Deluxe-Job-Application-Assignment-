@@ -238,6 +238,7 @@ MonoBehaviour:
   _turnSpeed: 250
   _boostAcceleration: 15
   _boostFX: {fileID: 8253563686130847263}
+  _destroyFXPrefab: {fileID: 4359276565833166516, guid: cf2b88eb007c5e1479d6a0d331d7a28b, type: 3}
 --- !u!114 &6674557944435304876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVelocity: {x: 0, y: 0}
   currentAngularVelocity: 0
-  _drag: 0.8
+  _drag: 0.6
   _maxVelocity: 10
 --- !u!50 &6244751669592573561
 Rigidbody2D:
@@ -290,7 +291,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3178831978492965221, guid: 56fa6fb430dccd74782cd2145b0ff4b5, type: 3}
   _spawnPosition: {fileID: 3861444497049721649}
   _maxBullets: 4
-  _fireCooldown: 0.1
+  _fireCooldown: 0
   _bulletSpeed: 10
   _bulletLifetime: 1
   _maxBulletSpread: 0

@@ -178,8 +178,9 @@ MonoBehaviour:
   _movement: {fileID: 5990112500975307518}
   _destroyable: {fileID: 5990112500975307519}
   _gun: {fileID: 5990112500975307513}
-  _sequenceDelay: 2
-  _targetingSequence: 050000000500000000000000
+  _sequenceDelay: 1
+  _targetingSequence: 000000000000000005000000
+  _destroyFXPrefab: {fileID: 4359276565833166516, guid: 43c6e6299f6275f4289b88d292562940, type: 3}
 --- !u!114 &5990112500975307513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3178831978492965221, guid: bf77cc76e4ddc9641ac21d667b36734f, type: 3}
   _spawnPosition: {fileID: 5990112501991391787}
   _maxBullets: -1
-  _fireCooldown: 1
+  _fireCooldown: 0.75
   _bulletSpeed: 8
   _bulletLifetime: 1.5
   _maxBulletSpread: 5

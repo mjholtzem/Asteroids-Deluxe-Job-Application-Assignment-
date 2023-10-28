@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1169600264, guid: 0feec4ed19876864780619954868f680, type: 3}
+  m_Sprite: {fileID: -1794696006, guid: 0feec4ed19876864780619954868f680, type: 3}
   m_Color: {r: 1, g: 0, b: 0.04943371, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentVelocity: {x: 0, y: 0}
-  currentAngularVelocity: 10
+  currentAngularVelocity: 720
   _drag: 0
   _maxVelocity: -1
 --- !u!50 &753176863102262424
