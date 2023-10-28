@@ -37,13 +37,9 @@ namespace AsteroidsDeluxe
 
         private void UpdateTurn()
         {
-            var input = Input.GetAxisRaw("Horizontal");
-            var turnSpeed = 0f;
-            if(input > 0) turnSpeed = -_turnSpeed;
-            else if(input < 0) turnSpeed = _turnSpeed;
-
+            var input = -Input.GetAxisRaw("Horizontal");
+            var turnSpeed = input * _turnSpeed;
             _movement.currentAngularVelocity = turnSpeed;
-
 		}
 
         private void UpdateBoost()
@@ -60,7 +56,7 @@ namespace AsteroidsDeluxe
 
         private void UpdateGun()
         {
-            if(Input.GetKey(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) && _gun.CanFire)
             {
                 _gun.Fire(_movement.currentVelocity);
             }

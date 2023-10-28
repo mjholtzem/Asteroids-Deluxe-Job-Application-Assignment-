@@ -23,16 +23,32 @@ namespace AsteroidsDeluxe
 		[SerializeField] private int _minDeathStarInterval = 10;
 		[SerializeField] private int _waveNumberForMinDeathStarTime = 30;
 
+		[Header("Config - Saucer")]
+		[SerializeField] private int _maxSaucerDelay = 18;
+		[SerializeField] private int _minSaucerDelay = 1;
+		[SerializeField] private int _maxSaucerInterval = 20;
+		[SerializeField] private int _minSaucerInterval = 2;
+		[SerializeField] private int _waveNumberForMinSaucerTime = 30;
+		[SerializeField][Range(0, 1)] private float _minSmallSaucerChance = .2f;
+		[SerializeField] [Range(0, 1)] private float _maxSmallSaucerChance = 1f;
+		[SerializeField] private int _waveNumberForMaxSaucerChance = 30;
+
 		[Header("References")]
         [SerializeField] private Asteroid _asteroidPrefabLarge;
 		[SerializeField] private DeathStar _deathStarPrefab;
+		[SerializeField] private Saucer _saucerLargePrefab;
+		[SerializeField] private Saucer _saucerSmallPrefab;
 
 		private List<AsteroidsBehaviour> _asteroids = new();
 		public List<AsteroidsBehaviour> Asteroids => _asteroids;
         private List<AsteroidsBehaviour> _enemies = new();
+		public List<AsteroidsBehaviour> Enemies => _enemies;
         private int _waveCount = 0;
 
         private float _deathStarSpawnTime = Mathf.Infinity;
+		private float _saucerSpawnTime = Mathf.Infinity;
+
+		private AsteroidsBehaviour _currentSaucer = null;
 
 		private void Start()
 		{
@@ -47,6 +63,7 @@ namespace AsteroidsDeluxe
 		private void Update()
 		{
 			UpdateDeathStarSpawner();
+			UpdateSaucerSpawner();
 		}
 
 		//Asteroid Spawning
@@ -70,6 +87,12 @@ namespace AsteroidsDeluxe
                 || message.DestroyedType == ObjectType.ChaserSmall)
             {
                 _enemies.Remove(message.destroyedObject);
+            }
+			else if(message.DestroyedType == ObjectType.SaucerLarge
+				|| message.DestroyedType == ObjectType.SaucerSmall)
+            {
+				_currentSaucer = null;
+				SetSaucerSpawnTime(false);
             }
 
             if(_asteroids.Count + _enemies.Count == 0)
@@ -111,6 +134,7 @@ namespace AsteroidsDeluxe
             }
 
             SetDeathStarSpawnTime(true);
+			SetSaucerSpawnTime(true);
 		}
 
 		//Death Star Spawning
@@ -165,6 +189,45 @@ namespace AsteroidsDeluxe
 			{
 				RegisterChaserChildren(child);
 			}
+		}
+
+		//Saucer Spawning
+		private void UpdateSaucerSpawner()
+		{
+			if(_asteroids.Count == 0) return;
+
+			if(Time.time < _saucerSpawnTime || _currentSaucer != null) return;
+
+			//Spawn Death Star
+			var spawnZones = CalculateSpawnZones();
+			var spawnZone = spawnZones[Random.Range(0, spawnZones.Count)];
+			SpawnSaucer(new Vector2(Random.Range(spawnZone.min.x, spawnZone.max.x), Random.Range(spawnZone.min.y, spawnZone.max.y)));
+		}
+
+		private void SetSaucerSpawnTime(bool newWave)
+		{
+			var t = Mathf.InverseLerp(1, _waveNumberForMinSaucerTime, _waveCount);
+			var delay = newWave
+				? Mathf.Lerp(_maxSaucerDelay, _minSaucerDelay, t)
+				: Mathf.Lerp(_maxSaucerInterval, _minSaucerInterval, t);
+
+			_saucerSpawnTime = Time.time + delay;
+		}
+
+		private Saucer SpawnSaucer(Vector2 position)
+		{
+			var t = Mathf.InverseLerp(1, _waveNumberForMaxSaucerChance, _waveCount);
+			var smallSaucerChance = Mathf.Lerp(
+				_minSmallSaucerChance, 
+				_maxSmallSaucerChance,
+				t);
+			var saucerPrefab = Random.value < smallSaucerChance ? _saucerSmallPrefab : _saucerLargePrefab;
+			var saucer = Instantiate(saucerPrefab, position, Quaternion.identity);
+
+			//register root and all children recursively
+			_currentSaucer = saucer;
+
+			return saucer;
 		}
 
 		private List<(Vector2 min, Vector2 max)> CalculateSpawnZones()

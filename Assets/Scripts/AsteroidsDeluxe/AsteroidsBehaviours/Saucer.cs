@@ -56,18 +56,28 @@ namespace AsteroidsDeluxe
                     {
                         //determine closest asteroid
                         var bestDist = Mathf.Infinity;
-                        AsteroidsBehaviour bestAsteroid = null;
+                        AsteroidsBehaviour bestTarget = null;
                         foreach(var asteroid in GameManager.Instance.WaveManager.Asteroids)
                         {
                             var dist = (transform.position - asteroid.transform.position).sqrMagnitude;
                             if(dist < bestDist)
                             {
                                 bestDist = dist;
-                                bestAsteroid = asteroid;
+                                bestTarget = asteroid;
                             }
                         }
+                        foreach(var enemy in GameManager.Instance.WaveManager.Enemies)
+                        {
+                            if(enemy.ObjectType != ObjectType.DeathStar) continue;
 
-                        return bestAsteroid != null ? bestAsteroid.transform.position : Vector2.zero;
+                            var dist = (transform.position - enemy.transform.position).sqrMagnitude;
+                            if(dist < bestDist)
+                            {
+                                bestDist = dist;
+                                bestTarget = enemy;
+                            }
+                        }
+                        return bestTarget != null ? bestTarget.transform.position : Vector2.zero;
                     }
             }
 

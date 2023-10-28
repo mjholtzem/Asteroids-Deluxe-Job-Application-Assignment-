@@ -27,7 +27,12 @@ namespace AsteroidsDeluxe
 			if(_asteroidsBehaviour.enabled) HandleInvulerabilityWindow();
 		}
 
-		private async void HandleInvulerabilityWindow()
+        private void OnDisable()
+        {
+			_wasEnabled = false;
+        }
+
+        private async void HandleInvulerabilityWindow()
 		{
 			_rigidbody.simulated = false;
 			await Task.Delay(TimeSpan.FromSeconds(_invulnerabilityWindow));

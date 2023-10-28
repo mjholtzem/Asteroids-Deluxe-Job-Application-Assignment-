@@ -290,9 +290,9 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3178831978492965221, guid: 56fa6fb430dccd74782cd2145b0ff4b5, type: 3}
   _spawnPosition: {fileID: 3861444497049721649}
   _maxBullets: 4
-  _fireCooldown: 0.2
+  _fireCooldown: 0.1
   _bulletSpeed: 10
-  _bulletLifetime: 0.75
+  _bulletLifetime: 1
   _maxBulletSpread: 0
 --- !u!114 &6373195332990462999
 MonoBehaviour:

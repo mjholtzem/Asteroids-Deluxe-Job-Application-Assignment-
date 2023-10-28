@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentVelocity: {x: 0, y: 0}
-  currentAngularVelocity: 0
+  currentAngularVelocity: 10
   _drag: 0
   _maxVelocity: -1
 --- !u!50 &753176863102262424
