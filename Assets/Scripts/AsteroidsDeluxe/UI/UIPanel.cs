@@ -10,14 +10,14 @@ namespace AsteroidsDeluxe
     {
         [SerializeField] private CanvasGroup _canvasGroup;
 
-        public void Open()
+        public virtual void Open()
         {
             gameObject.SetActive(true);
             _canvasGroup.DOKill();
             _canvasGroup.DOFade(1, .5f);
         }
 
-        public void Close()
+        public virtual void Close()
         {
             _canvasGroup.DOKill();
             _canvasGroup.DOFade(0, .5f).OnComplete(() =>

@@ -2,6 +2,8 @@ using AsteroidsDeluxe;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using System.Threading.Tasks;
+using System;
 
 public class GameHUD : UIPanel
 {
@@ -9,6 +11,7 @@ public class GameHUD : UIPanel
     [SerializeField] private TMP_Text _pointsLabel;
 	[SerializeField] private TMP_Text _waveCountLabel;
 	[SerializeField] private TMP_Text _waveIntroLabel;
+	[SerializeField] private CanvasGroup _backgroundFadeGroup;
 
 	private void OnEnable()
 	{
@@ -47,10 +50,22 @@ public class GameHUD : UIPanel
 		sequence.Join(_pointsLabel.transform.DOPunchScale(Vector3.one * .25f, .4f, 0, 0));
 	}
 
-	private void OnLivesChanged(LivesChangedMessage message)
+	private async void OnLivesChanged(LivesChangedMessage message)
     {
+		if(GameManager.Instance.CurrentGameState != GameManager.GameState.Gameplay) return;
+		
 		UpdateLivesText(message.currentLives);
-		if(message.currentLives <= 0) DisplayMessage("Game Over");
+		if(message.currentLives <= 0)
+		{
+			DisplayMessage("Game Over");
+
+			await Task.Delay(TimeSpan.FromSeconds(1.5f));
+
+			Debug.Log("fading to black - HUD");
+			_backgroundFadeGroup.gameObject.SetActive(true);
+			_backgroundFadeGroup.alpha = 0;
+			_backgroundFadeGroup.DOFade(1, 1);
+		}
     }
 
 	private void UpdateWaveText(int waveCount)

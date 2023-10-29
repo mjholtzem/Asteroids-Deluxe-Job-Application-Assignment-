@@ -18,6 +18,7 @@ namespace AsteroidsDeluxe
 		[Header("Config")]
 		[Min(.25f)]
 		[SerializeField] private float _respawnDelay = 2;
+		[SerializeField] private float _gameOverDelay = 2;
 
 		[Header("Game References")]
 		[SerializeField] private Player _player;
@@ -37,7 +38,7 @@ namespace AsteroidsDeluxe
 
 		private void Start()
 		{
-			Dispatch.Listen<ObjectDestroyedMessage>(OnObjectDestroyed);
+			Dispatch.Listen<LivesChangedMessage>(OnLivesChanged);
 
 			StartCoroutine(InitRoutine());
 		}
@@ -50,7 +51,7 @@ namespace AsteroidsDeluxe
 
 		private void OnDestroy()
 		{
-			Dispatch.Unlisten<ObjectDestroyedMessage>(OnObjectDestroyed);
+			Dispatch.Unlisten<LivesChangedMessage>(OnLivesChanged);
 		}
 
 		private void SetGameState(GameState targetState)
@@ -61,11 +62,11 @@ namespace AsteroidsDeluxe
 
 		}
 
-		private async void OnObjectDestroyed(ObjectDestroyedMessage message)
+		private async void OnLivesChanged(LivesChangedMessage message)
 		{
-			if(message.DestroyedType != ObjectType.PlayerShip) return;
+			if(_currentGameState != GameState.Gameplay) return;
 
-			if(_livesManager.PlayerLives <= 0)
+			if(message.currentLives <= 0)
             {
 				OnGameOver();
 				return;
@@ -100,10 +101,12 @@ namespace AsteroidsDeluxe
 			_waveManager.SpawnWave();
 		}
 
-		private void OnGameOver()
+		private async void OnGameOver()
         {
-			_currentGameState = GameState.Leaderboard;
-			Dispatch.Fire(new GameStateMessage { state = GameState.Leaderboard });
+			await Task.Delay(TimeSpan.FromSeconds(_gameOverDelay));
+
+			WaveManager.DeInit();
+			StartMainMenu();
         }
 	}
 }
