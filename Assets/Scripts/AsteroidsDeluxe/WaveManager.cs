@@ -10,6 +10,7 @@ namespace AsteroidsDeluxe
     {
         [Header("Config")]
         [SerializeField] private float _waveStartDelay;
+		[SerializeField] private bool _requireEnemyClear = true;
 
         [Header("Config - Asteroids")]
         [SerializeField] private int _minAsteroidCount = 4;
@@ -44,6 +45,7 @@ namespace AsteroidsDeluxe
         private List<AsteroidsBehaviour> _enemies = new();
 		public List<AsteroidsBehaviour> Enemies => _enemies;
         private int _waveCount = 0;
+		private bool _isStartingWave = false;
 
         private float _deathStarSpawnTime = Mathf.Infinity;
 		private float _saucerSpawnTime = Mathf.Infinity;
@@ -62,6 +64,7 @@ namespace AsteroidsDeluxe
 
 		private void Update()
 		{
+			if(_waveCount == 0) return;
 			UpdateDeathStarSpawner();
 			UpdateSaucerSpawner();
 		}
@@ -76,6 +79,8 @@ namespace AsteroidsDeluxe
 
         private void OnObjectDestroyed(ObjectDestroyedMessage message)
         {
+			if(_waveCount == 0) return;
+
             if(message.DestroyedType == ObjectType.AsteroidLarge
                 || message.DestroyedType == ObjectType.AsteroidMedium
                 || message.DestroyedType == ObjectType.AsteroidSmall)
@@ -95,7 +100,7 @@ namespace AsteroidsDeluxe
 				SetSaucerSpawnTime(false);
             }
 
-            if(_asteroids.Count + _enemies.Count == 0)
+            if(_asteroids.Count == 0 && (_enemies.Count == 0 || _requireEnemyClear == false))
             {
 				Debug.Log($"Wave {_waveCount} is COMPLETE!!!");
 				SpawnWave();
@@ -104,6 +109,9 @@ namespace AsteroidsDeluxe
 
         public async void SpawnWave()
         {
+			if(_isStartingWave) return;
+			_isStartingWave = true;
+
 			_waveCount++;
 			Debug.Log($"Wave {_waveCount} is starting!!!");
 			Dispatch.Fire(new WaveStartedMessage { waveCount = _waveCount });
@@ -135,8 +143,22 @@ namespace AsteroidsDeluxe
 
             SetDeathStarSpawnTime(true);
 			SetSaucerSpawnTime(true);
+			_isStartingWave = false;
 		}
 
+		public void DeInit()
+        {
+			_waveCount = 0;
+
+			foreach(var asteroid in _asteroids) Destroy(asteroid.gameObject);
+			_asteroids.Clear();
+
+			foreach(var enemy in _enemies) Destroy(enemy.gameObject);
+			_enemies.Clear();
+
+			if(_currentSaucer) Destroy(_currentSaucer.gameObject);
+        }
+		
 		//Death Star Spawning
 		private void UpdateDeathStarSpawner()
         {
@@ -203,7 +225,6 @@ namespace AsteroidsDeluxe
 			var spawnZone = spawnZones[Random.Range(0, spawnZones.Count)];
 			SpawnSaucer(new Vector2(Random.Range(spawnZone.min.x, spawnZone.max.x), Random.Range(spawnZone.min.y, spawnZone.max.y)));
 		}
-
 		private void SetSaucerSpawnTime(bool newWave)
 		{
 			var t = Mathf.InverseLerp(1, _waveNumberForMinSaucerTime, _waveCount);

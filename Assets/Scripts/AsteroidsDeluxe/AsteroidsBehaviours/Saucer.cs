@@ -49,6 +49,12 @@ namespace AsteroidsDeluxe
             if(_targetingSequence == null || _targetingSequence.Length == 0) return Vector2.zero;
 
             var targetType = _targetingSequence[_targetSequenceIndex % _targetingSequence.Length];
+
+            if(targetType == TargetType.Player && GameManager.Instance.Player.gameObject.activeInHierarchy == false) 
+            {
+                targetType = TargetType.Asteroid;
+            }
+
             switch(targetType)
             {
                 case TargetType.Player:

@@ -242,6 +242,7 @@ MonoBehaviour:
   - Player
   - Bullet
   - SaucerBullet
+  - Saucer
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -297,10 +298,6 @@ PrefabInstance:
     - target: {fileID: -7831235537408391616, guid: 1f650cf7cae00a543b86979ea2eeaf71, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1011426653577144525, guid: 1f650cf7cae00a543b86979ea2eeaf71, type: 3}
-      propertyPath: _collisionTags.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4777362684690731665, guid: 1f650cf7cae00a543b86979ea2eeaf71, type: 3}
       propertyPath: m_Name
@@ -383,10 +380,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -1011426653577144525, guid: 1f650cf7cae00a543b86979ea2eeaf71, type: 3}
-      propertyPath: _collisionTags.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4777362684690731665, guid: 1f650cf7cae00a543b86979ea2eeaf71, type: 3}
       propertyPath: m_Name
       value: ChaserLarge
@@ -467,10 +460,6 @@ PrefabInstance:
     - target: {fileID: -7831235537408391616, guid: 1f650cf7cae00a543b86979ea2eeaf71, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1011426653577144525, guid: 1f650cf7cae00a543b86979ea2eeaf71, type: 3}
-      propertyPath: _collisionTags.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4777362684690731665, guid: 1f650cf7cae00a543b86979ea2eeaf71, type: 3}
       propertyPath: m_Name

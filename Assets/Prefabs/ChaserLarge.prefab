@@ -178,6 +178,7 @@ MonoBehaviour:
   - Player
   - Bullet
   - SaucerBullet
+  - Saucer
   onCollisionDamage:
     m_PersistentCalls:
       m_Calls: []

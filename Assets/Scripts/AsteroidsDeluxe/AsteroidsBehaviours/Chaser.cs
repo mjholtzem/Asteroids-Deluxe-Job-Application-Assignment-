@@ -55,8 +55,6 @@ namespace AsteroidsDeluxe
 
 		private void UpdateBoost()
 		{
-			if(_player == null || _player.gameObject.activeInHierarchy == false) return;
-
 			_movement.currentVelocity += (_boostAcceleration * Time.deltaTime) * (Vector2)transform.up;
 		}
 
