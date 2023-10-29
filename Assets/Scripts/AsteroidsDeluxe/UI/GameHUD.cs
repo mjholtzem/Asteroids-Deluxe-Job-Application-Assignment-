@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Threading.Tasks;
 using System;
+using UnityEngine.UI;
 
 public class GameHUD : UIPanel
 {
@@ -11,6 +12,7 @@ public class GameHUD : UIPanel
     [SerializeField] private TMP_Text _pointsLabel;
 	[SerializeField] private TMP_Text _waveCountLabel;
 	[SerializeField] private TMP_Text _waveIntroLabel;
+	[SerializeField] private Image _shieldProgressImage;
 	[SerializeField] private CanvasGroup _backgroundFadeGroup;
 
 	private void OnEnable()
@@ -20,6 +22,7 @@ public class GameHUD : UIPanel
 		Dispatch.Listen<PointsAwardedMessage>(OnPointsAwarded);
 		Dispatch.Listen<WaveStartedMessage>(OnWaveStarted);
 		Dispatch.Listen<LivesChangedMessage>(OnLivesChanged);
+		Dispatch.Listen<ShieldUpdateMessage>(OnShieldUpdated);
 	}
 
 	private void OnDisable()
@@ -27,6 +30,7 @@ public class GameHUD : UIPanel
 		Dispatch.Unlisten<PointsAwardedMessage>(OnPointsAwarded);
 		Dispatch.Unlisten<WaveStartedMessage>(OnWaveStarted);
 		Dispatch.Unlisten<LivesChangedMessage>(OnLivesChanged);
+		Dispatch.Unlisten<ShieldUpdateMessage>(OnShieldUpdated);
 	}
 
 	private void OnWaveStarted(WaveStartedMessage message)
@@ -68,6 +72,11 @@ public class GameHUD : UIPanel
 		}
     }
 
+	private void OnShieldUpdated(ShieldUpdateMessage message)
+    {
+		_shieldProgressImage.fillAmount = message.remainingShield;
+    }
+
 	private void UpdateWaveText(int waveCount)
 	{
 		_waveCountLabel.text = $"Wave {waveCount}";
@@ -90,6 +99,6 @@ public class GameHUD : UIPanel
 
 	private void UpdateLivesText(int lives)
     {
-		_livesLabel.text = $"<space=1.2em>x {lives}";
+		_livesLabel.text = $"<space=1.7em>x {lives}";
     }
 }

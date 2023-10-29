@@ -65,6 +65,7 @@ namespace AsteroidsDeluxe
 		private async void OnLivesChanged(LivesChangedMessage message)
 		{
 			if(_currentGameState != GameState.Gameplay) return;
+			if(message.deltaLives > 0) return;
 
 			if(message.currentLives <= 0)
             {

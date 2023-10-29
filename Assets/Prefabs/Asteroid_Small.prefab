@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movement: {fileID: 8817423249781025559}
-  _velocityMin: 1.125
-  _velocityMax: 2.25
+  _velocityMin: 1.8
+  _velocityMax: 3.3
   _angularVelocityMin: 30
   _angularVelocityMax: 100

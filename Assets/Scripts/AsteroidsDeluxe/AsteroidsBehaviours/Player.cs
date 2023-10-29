@@ -7,6 +7,7 @@ namespace AsteroidsDeluxe
     {
         [Header("References")]
         [SerializeField] private Gun _gun;
+        [SerializeField] private Shield _shield;
 
         [Header("Movement")]
         [SerializeField] private float _turnSpeed;
@@ -27,6 +28,8 @@ namespace AsteroidsDeluxe
             _movement.currentVelocity = Vector2.zero;
             _movement.currentAngularVelocity = 0;
             _boostFX.gameObject.SetActive(false);
+            _shield.Init();
+            _shield.TurnOff();
         }
 
         private void Update()
@@ -34,6 +37,7 @@ namespace AsteroidsDeluxe
             UpdateTurn();
             UpdateBoost();
             UpdateGun();
+            UpdateShield();
         }
 
         private void UpdateTurn()
@@ -63,9 +67,16 @@ namespace AsteroidsDeluxe
             }
         }
 
+        private void UpdateShield()
+        {
+            if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) _shield.TurnOn();
+            else if(Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift)) _shield.TurnOff();
+        }
+
 		protected override void OnCollisionDamage(AsteroidsBehaviour destructionSource, ObjectDestroyedMessage destructionMessage)
 		{
-			//check for shield?
+            //check for shield?
+            if(_shield.IsOn) return;
 
 			Debug.Log("Ship was destroyed!!!");
 			Dispatch.Fire(destructionMessage);

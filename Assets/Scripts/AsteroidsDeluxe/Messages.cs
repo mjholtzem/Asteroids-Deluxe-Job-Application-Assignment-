@@ -15,4 +15,6 @@ namespace AsteroidsDeluxe
     public class WaveStartedMessage { public int waveCount; }
 
     public class GameStateMessage { public GameManager.GameState state; public GameManager.GameState prevState; }
+
+    public class ShieldUpdateMessage { public float remainingShield; }
 }
