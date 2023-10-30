@@ -1,6 +1,8 @@
 # Space Blaster Deluxe
 This project was done as part of a job application. The prompt for the assignment was "make a clone of Asteroids Deluxe" in a week. I spent about 22 hours on this project across 4 days.
 
+[Try it Here!](https://mjholtzem.itch.io/space-blaster-deluxe)
+
 ## How did it go?
 I'm very happy with the amount of work I was able to get done in the time-frame and that the quality of the code remained pretty neat. There is a tendency in these fast paced type projects for code quality to deteriorate greatly towards the end and that didn't really happen. I more or less got all the features done that I identified in the real game and hit most of my stretch goals. A high level list of completed features
 
