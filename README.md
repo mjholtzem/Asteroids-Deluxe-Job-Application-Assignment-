@@ -29,3 +29,4 @@ Of course given the time constraint there are some things I did not get done. He
  - Object pooling. Decided to skip it for this project to prioritize features but ideally all Instantiations would be replaced with object pooling and everything would be pre-seeded to avoid any allocations at runtime
  - GetComponent calls. I was mostly able to avoid these but there are a few hanging around. I would maybe cache these components somewhere keyed by their gameobject for allocation free access. At the end of the day though this is not a huge deal
  - Leaderboards. Pretty important to the arcade game but unfortunatley didn't have time for it.
+ - Controls: Would have liked to update to the new Input Manager and do the controls better. Adding controller support and maybe even touch-screen support
