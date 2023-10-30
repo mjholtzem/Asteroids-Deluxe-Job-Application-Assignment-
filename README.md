@@ -1,5 +1,8 @@
 # Space Blaster Deluxe
-This project was done as part of a job application. The prompt for the assignment was "make a clone of Asteroids Deluxe" in a week. I spent about 22 hours on this project across 4 days.
+This project was done as part of a job application. The prompt for the assignment was "make a clone of Asteroids Deluxe" in a week. I spent about 22 hours on this project across 4 days (plus a couple of minor tweaks on the 5th day :P).
+
+Everything under 
+Scripts/AsteroidsDeluxe was written from scratch for this project. I tried to minimize the use of third party libraries for the most part.
 
 [Try it Here!](https://mjholtzem.itch.io/space-blaster-deluxe)
 
@@ -29,3 +32,4 @@ Of course given the time constraint there are some things I did not get done. He
  - Object pooling. Decided to skip it for this project to prioritize features but ideally all Instantiations would be replaced with object pooling and everything would be pre-seeded to avoid any allocations at runtime
  - GetComponent calls. I was mostly able to avoid these but there are a few hanging around. I would maybe cache these components somewhere keyed by their gameobject for allocation free access. At the end of the day though this is not a huge deal
  - Leaderboards. Pretty important to the arcade game but unfortunatley didn't have time for it.
+ - Controls: Would have liked to update to the new Input Manager and do the controls better. Adding controller support and maybe even touch-screen support
