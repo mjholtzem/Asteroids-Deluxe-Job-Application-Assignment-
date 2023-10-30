@@ -1,5 +1,5 @@
 # Space Blaster Deluxe
-This project was done as part of a job application. The prompt for the assignment was "make a clone of Asteroids Deluxe" in a week. I spent about 22 hours on this project across 4 days.
+This project was done as part of a job application. The prompt for the assignment was "make a clone of Asteroids Deluxe" in a week. I spent about 22 hours on this project across 4 days (plus a couple of minor tweaks on the 5th day :P).
 
 Everything under 
 Scripts/AsteroidsDeluxe was written from scratch for this project. I tried to minimize the use of third party libraries for the most part.
