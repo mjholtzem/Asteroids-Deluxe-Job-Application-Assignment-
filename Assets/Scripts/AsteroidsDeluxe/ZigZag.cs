@@ -33,6 +33,7 @@ namespace AsteroidsDeluxe
             _movement.currentVelocity = _moveSpeed * direction;
 
             _nextDirectionChangeTime = Time.time + Random.Range(_minDirectionChangeDelay, _maxDirectionChangeDelay);
+            _moveCount++;
         }
     }
 }
