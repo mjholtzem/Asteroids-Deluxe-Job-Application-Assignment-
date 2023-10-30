@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8645055730404534364}
   - component: {fileID: 8645055730404534360}
   - component: {fileID: 8645055730404534343}
+  - component: {fileID: 4048463940891435470}
   m_Layer: 0
   m_Name: Saucer_Large
   m_TagString: Saucer
@@ -85,11 +86,11 @@ MonoBehaviour:
   _objectType: 15
   _mainRenderer: {fileID: 8645055730908317281}
   _movement: {fileID: 8645055730404534363}
+  _destroyFX: {fileID: 4048463940891435470}
   _destroyable: {fileID: 8645055730404534364}
   _gun: {fileID: 8645055730404534362}
   _sequenceDelay: 1
   _targetingSequence: 05000000050000000500000000000000
-  _destroyFXPrefab: {fileID: 4359276565833166516, guid: 43c6e6299f6275f4289b88d292562940, type: 3}
 --- !u!114 &8645055730404534362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +110,8 @@ MonoBehaviour:
   _bulletSpeed: 5
   _bulletLifetime: 2
   _maxBulletSpread: 15
+  _fireSound: {fileID: 8300000, guid: 5269c539356c6014e91950d5c3b4421e, type: 3}
+  _fireSoundVolume: 1
 --- !u!114 &8645055730404534363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +186,22 @@ MonoBehaviour:
   _moveSpeed: 1.5
   _minDirectionChangeDelay: 1
   _maxDirectionChangeDelay: 3
+--- !u!114 &4048463940891435470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8645055730404534366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974bfc80da277dc4a975b0ebc0b6d90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyFXPrefab: {fileID: 4359276565833166516, guid: 43c6e6299f6275f4289b88d292562940, type: 3}
+  _destructionSound: {fileID: 8300000, guid: fb32c379a36bb2d4e8a067f4d2891a89, type: 3}
+  _destructionSoundVolume: 1
+  _destructionSoundPitch: 1
 --- !u!1 &8645055730908317283
 GameObject:
   m_ObjectHideFlags: 0

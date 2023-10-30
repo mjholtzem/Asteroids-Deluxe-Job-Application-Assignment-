@@ -7,6 +7,9 @@ namespace AsteroidsDeluxe
         [Header("Config")]
         [SerializeField] private float _shieldDuration;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip _shieldSound;
+
         private float _shieldTimer = 0;
         public bool CanTurnOn => _shieldTimer > 0;
         private bool _isOn;
@@ -20,8 +23,9 @@ namespace AsteroidsDeluxe
 
         public void TurnOn()
         {
-            if(CanTurnOn == false) return;
+            if(CanTurnOn == false || _isOn) return;
 
+            AudioManager.Instance.PlaySound(_shieldSound);
             _isOn = true;
             gameObject.SetActive(true);
         }

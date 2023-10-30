@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace AsteroidsDeluxe
@@ -14,9 +12,6 @@ namespace AsteroidsDeluxe
 		[Header("Children")]
 		[SerializeField] private List<Chaser> _children = new();
 		public List<Chaser> Children => _children;
-
-		[Header("FX")]
-		[SerializeField] private GameObject _destroyFXPrefab;
 
 		private Player _player;
 
@@ -69,7 +64,7 @@ namespace AsteroidsDeluxe
 			}
 
 			Dispatch.Fire(message);
-			if(_destroyFXPrefab) Instantiate(_destroyFXPrefab, transform.position, Quaternion.identity);
+			_destroyFX.Play();
 			Destroy(gameObject);
 		}
 	}

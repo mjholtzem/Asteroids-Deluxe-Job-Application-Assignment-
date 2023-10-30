@@ -8,10 +8,14 @@ namespace AsteroidsDeluxe
     {
         [SerializeField] private TMP_Text _startGameLabel;
         [SerializeField] private CanvasGroup _backgroundFadeGroup;
+        [SerializeField] private AudioClip _startGameSound;
+
+        private bool _isStarting = false;
 
         private void OnEnable()
         {
-            Debug.Log("Fading from black - Main Menu");
+            _isStarting = false;
+
             _backgroundFadeGroup.DOKill();
             _backgroundFadeGroup.alpha = 1;
             _backgroundFadeGroup.DOFade(0, 1);
@@ -29,7 +33,6 @@ namespace AsteroidsDeluxe
 
         private void OnDisable()
         {
-            Debug.Log("Killing fade");
             _backgroundFadeGroup.DOKill();
             _backgroundFadeGroup.alpha = 0;
 
@@ -52,7 +55,12 @@ namespace AsteroidsDeluxe
 
         private void StartGame()
         {
-            Debug.Log("Fading to black - Main Menu");
+            if(_isStarting) return;
+
+            _isStarting = true;
+
+            AudioManager.Instance.PlaySound(_startGameSound);
+
             _backgroundFadeGroup.DOKill();
             _backgroundFadeGroup.DOFade(1, 1).OnComplete(() =>
             {

@@ -12,6 +12,8 @@ namespace AsteroidsDeluxe
 		[Header("Base References")]
 		[SerializeField] private Renderer _mainRenderer;
 		[SerializeField] protected Movement _movement;
+		[SerializeField] protected DestroyFX _destroyFX;
+
 		public Movement Movement => _movement;
 
 		[SerializeField] protected Destroyable _destroyable;

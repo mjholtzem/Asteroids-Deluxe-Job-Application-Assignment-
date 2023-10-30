@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 7039846876765771478}
   - component: {fileID: 3076441000390677018}
   - component: {fileID: 8633329984357745151}
+  - component: {fileID: -3340224103322538029}
   m_Layer: 0
   m_Name: Asteroid_Large
   m_TagString: Asteroid
@@ -170,9 +171,9 @@ MonoBehaviour:
   _objectType: 5
   _mainRenderer: {fileID: 8817423249427275760}
   _movement: {fileID: 8817423249781025559}
+  _destroyFX: {fileID: -3340224103322538029}
   _destroyable: {fileID: 3076441000390677018}
   _randomMovementController: {fileID: 8633329984357745151}
-  _destroyFXPrefab: {fileID: 3954117194980631443, guid: 76389f39577e23449863a2a1702785c5, type: 3}
   _childPrefab: {fileID: 8817423249781025558, guid: 94e2cdfb208364c4e91d050e9a506e1b, type: 3}
   _spawnCount: 2
 --- !u!114 &8817423249781025559
@@ -249,3 +250,19 @@ MonoBehaviour:
   _velocityMax: 1.5
   _angularVelocityMin: 30
   _angularVelocityMax: 100
+--- !u!114 &-3340224103322538029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817423249781025561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974bfc80da277dc4a975b0ebc0b6d90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyFXPrefab: {fileID: 3954117194980631443, guid: 76389f39577e23449863a2a1702785c5, type: 3}
+  _destructionSound: {fileID: 8300000, guid: 0e688fa2396f4234f85f978c82718ff9, type: 3}
+  _destructionSoundVolume: 0.25
+  _destructionSoundPitch: 1

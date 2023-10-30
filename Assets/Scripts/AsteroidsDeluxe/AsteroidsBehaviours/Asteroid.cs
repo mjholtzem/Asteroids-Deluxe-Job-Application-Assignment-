@@ -9,9 +9,6 @@ namespace AsteroidsDeluxe
 		[SerializeField] RandomMovementController _randomMovementController;
 		public RandomMovementController RandomMovementController => _randomMovementController;
 
-		[Header("FX")]
-		[SerializeField] private GameObject _destroyFXPrefab;
-
 		[Header("Children")]
 		[SerializeField] private Asteroid _childPrefab;
 		[SerializeField] private int _spawnCount;
@@ -34,8 +31,7 @@ namespace AsteroidsDeluxe
 			}
 
 			Dispatch.Fire(destructionMessage);
-		
-			if(_destroyFXPrefab) Instantiate(_destroyFXPrefab, transform.position, Quaternion.identity);
+			_destroyFX.Play();
 			Destroy(gameObject);
 		}
 	}

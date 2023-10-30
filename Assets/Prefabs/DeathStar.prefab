@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 5144770303698927116}
   - component: {fileID: 5144770303698927104}
   - component: {fileID: 5144770303698927117}
+  - component: {fileID: -2563576513472689256}
   m_Layer: 0
   m_Name: DeathStar
   m_TagString: DeathStar
@@ -203,13 +204,13 @@ MonoBehaviour:
   _objectType: 10
   _mainRenderer: {fileID: 5144770303520650295}
   _movement: {fileID: 5144770303698927119}
+  _destroyFX: {fileID: -2563576513472689256}
   _destroyable: {fileID: 5144770303698927116}
   _randomDrift: {fileID: 5144770303698927104}
   _children:
   - {fileID: 6732074288176304574}
   - {fileID: 6067537889535193640}
   - {fileID: 6067537890150907991}
-  _destroyFXPrefab: {fileID: 3954117194980631443, guid: cfda79dc140c83e4b8747d824e2c2e72, type: 3}
 --- !u!114 &5144770303698927119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +285,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2563576513472689256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5144770303698927114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974bfc80da277dc4a975b0ebc0b6d90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyFXPrefab: {fileID: 3954117194980631443, guid: cfda79dc140c83e4b8747d824e2c2e72, type: 3}
+  _destructionSound: {fileID: 8300000, guid: b88c20d4b79d1a84da1d99097b1ec208, type: 3}
+  _destructionSoundVolume: 1
+  _destructionSoundPitch: 1
 --- !u!1001 &5144770302821823592
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,6 +16,10 @@ namespace AsteroidsDeluxe
 		[SerializeField] private float _bulletLifetime = 1f;
 		[SerializeField] private float _maxBulletSpread = 0f;
 
+		[Header("Audio")]
+		[SerializeField] private AudioClip _fireSound;
+		[SerializeField] private float _fireSoundVolume = 1;
+
 		private List<Bullet> _spawnedBullets = new();
 		private float _cooldownTimer = 0;
 
@@ -69,6 +73,8 @@ namespace AsteroidsDeluxe
 			_spawnedBullets.Add(bullet);
 
 			_cooldownTimer = _fireCooldown;
+
+			if(_fireSound != null) AudioManager.Instance.PlaySound(_fireSound, _fireSoundVolume, Random.Range(.75f, 1.25f));
 		}
 	}
 }

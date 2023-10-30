@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 9038317511316948911}
   - component: {fileID: 219233432202462680}
   - component: {fileID: 8847125242742033650}
+  - component: {fileID: 3675660318111658746}
   m_Layer: 0
   m_Name: ChaserLarge
   m_TagString: Chaser
@@ -139,13 +140,13 @@ MonoBehaviour:
   _objectType: 11
   _mainRenderer: {fileID: 4627286975316884537}
   _movement: {fileID: -9077527333464678491}
+  _destroyFX: {fileID: 3675660318111658746}
   _destroyable: {fileID: -1011426653577144525}
   _turnSpeed: 50
   _boostAcceleration: 5
   _children:
   - {fileID: 34562844311417124}
   - {fileID: 6640690804309562577}
-  _destroyFXPrefab: {fileID: 4359276565833166516, guid: 2c73f7b65a0c86d46bcb7c200f1c7a6f, type: 3}
 --- !u!114 &-9077527333464678491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,22 @@ MonoBehaviour:
   _invulnerabilityWindow: 0.25
   _rigidbody: {fileID: 9038317511316948911}
   _asteroidsBehaviour: {fileID: -7831235537408391616}
+--- !u!114 &3675660318111658746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4777362684690731665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974bfc80da277dc4a975b0ebc0b6d90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyFXPrefab: {fileID: 4359276565833166516, guid: 2c73f7b65a0c86d46bcb7c200f1c7a6f, type: 3}
+  _destructionSound: {fileID: 8300000, guid: b88c20d4b79d1a84da1d99097b1ec208, type: 3}
+  _destructionSoundVolume: 1
+  _destructionSoundPitch: 2
 --- !u!1001 &2404266491636710743
 PrefabInstance:
   m_ObjectHideFlags: 0

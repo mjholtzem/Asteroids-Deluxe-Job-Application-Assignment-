@@ -15,7 +15,8 @@ namespace AsteroidsDeluxe
 
         [Header("FX")]
         [SerializeField] private Transform _boostFX;
-        [SerializeField] private GameObject _destroyFXPrefab;
+
+        private bool _isBoosting = false;
 
         protected override void Start()
         {
@@ -30,6 +31,8 @@ namespace AsteroidsDeluxe
             _boostFX.gameObject.SetActive(false);
             _shield.Init();
             _shield.TurnOff();
+
+            _isBoosting = false;
         }
 
         private void Update()
@@ -55,8 +58,15 @@ namespace AsteroidsDeluxe
                 //Apply Boost Acceleration in direction of the player
                 _movement.currentVelocity += (_boostAcceleration * Time.deltaTime) * (Vector2)transform.up;
             }
+            
+            if(_isBoosting != isBoosting)
+            {
+                if(isBoosting) AudioManager.Instance.StartBoost();
+                else AudioManager.Instance.StopBoost();
+                _boostFX.gameObject.SetActive(isBoosting);
 
-            if(_boostFX) _boostFX.gameObject.SetActive(isBoosting);
+                _isBoosting = isBoosting;
+            }
         }
 
         private void UpdateGun()
@@ -78,9 +88,12 @@ namespace AsteroidsDeluxe
             //check for shield?
             if(_shield.IsOn) return;
 
+            _isBoosting = false;
+            AudioManager.Instance.StopBoost();
+
 			Debug.Log("Ship was destroyed!!!");
 			Dispatch.Fire(destructionMessage);
-            if(_destroyFXPrefab) Instantiate(_destroyFXPrefab, transform.position, Quaternion.identity);
+            if(_destroyFX) _destroyFX.Play();
             gameObject.SetActive(false);
 		}
 	}

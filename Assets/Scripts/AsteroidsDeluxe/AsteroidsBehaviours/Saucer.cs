@@ -15,16 +15,20 @@ namespace AsteroidsDeluxe
         [SerializeField] private float _sequenceDelay;
         [SerializeField] private TargetType[] _targetingSequence;
 
-        [Header("FX")]
-        [SerializeField] private GameObject _destroyFXPrefab;
-
         private int _targetSequenceIndex = 0;
         private float _nextFireSequenceTime = Mathf.Infinity;
 
         protected override void OnEnable()
         {
+            AudioManager.Instance.StartSaucer();
             ResetFireSequence();
             base.OnEnable();
+        }
+
+        protected override void OnDisable()
+        {
+            AudioManager.Instance.StopSaucer();
+            base.OnDisable();
         }
 
         private void Update()
@@ -96,7 +100,7 @@ namespace AsteroidsDeluxe
         protected override void OnCollisionDamage(AsteroidsBehaviour destructionSource, ObjectDestroyedMessage message)
         {
             Dispatch.Fire(message);
-            if(_destroyFXPrefab) Instantiate(_destroyFXPrefab, transform.position, Quaternion.identity);
+            _destroyFX.Play();
             Destroy(gameObject);
         }
 

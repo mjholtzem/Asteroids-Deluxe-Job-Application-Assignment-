@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shieldDuration: 12
+  _shieldSound: {fileID: 8300000, guid: a941262ecb66b8740b5c095a18b4afbb, type: 3}
 --- !u!1 &6825522139494494235
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +292,7 @@ GameObject:
   - component: {fileID: 5346468155441333315}
   - component: {fileID: 6373195332990462999}
   - component: {fileID: -5973182246128905098}
+  - component: {fileID: -5652318372066960662}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -332,13 +334,13 @@ MonoBehaviour:
   _objectType: 0
   _mainRenderer: {fileID: 8253563684106059451}
   _movement: {fileID: 6674557944435304876}
+  _destroyFX: {fileID: -5652318372066960662}
   _destroyable: {fileID: 6373195332990462999}
   _gun: {fileID: 5346468155441333315}
   _shield: {fileID: 3905109661741868571}
   _turnSpeed: 250
   _boostAcceleration: 15
   _boostFX: {fileID: 8253563686130847263}
-  _destroyFXPrefab: {fileID: 4359276565833166516, guid: cf2b88eb007c5e1479d6a0d331d7a28b, type: 3}
 --- !u!114 &6674557944435304876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +397,8 @@ MonoBehaviour:
   _bulletSpeed: 10
   _bulletLifetime: 1
   _maxBulletSpread: 0
+  _fireSound: {fileID: 8300000, guid: 5269c539356c6014e91950d5c3b4421e, type: 3}
+  _fireSoundVolume: 1
 --- !u!114 &6373195332990462999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +435,22 @@ MonoBehaviour:
   _invulnerabilityWindow: 1
   _rigidbody: {fileID: 6244751669592573561}
   _asteroidsBehaviour: {fileID: 8253563685021643223}
+--- !u!114 &-5652318372066960662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253563685021643220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974bfc80da277dc4a975b0ebc0b6d90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyFXPrefab: {fileID: 4359276565833166516, guid: cf2b88eb007c5e1479d6a0d331d7a28b, type: 3}
+  _destructionSound: {fileID: 8300000, guid: 8cfa2ad6b4601304dabed0fe1fd44115, type: 3}
+  _destructionSoundVolume: 0.25
+  _destructionSoundPitch: 1
 --- !u!1 &8253563685379166744
 GameObject:
   m_ObjectHideFlags: 0
