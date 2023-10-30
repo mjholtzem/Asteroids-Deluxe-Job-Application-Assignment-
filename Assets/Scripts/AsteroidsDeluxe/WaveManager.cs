@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System;
+using System.Collections;
 
 namespace AsteroidsDeluxe
 {
@@ -103,20 +104,20 @@ namespace AsteroidsDeluxe
             if(_asteroids.Count == 0 && (_enemies.Count == 0 || _requireEnemyClear == false))
             {
 				Debug.Log($"Wave {_waveCount} is COMPLETE!!!");
-				SpawnWave();
+				StartCoroutine(SpawnWave());
             }
         }
 
-        public async void SpawnWave()
+        public IEnumerator SpawnWave()
         {
-			if(_isStartingWave) return;
+			if(_isStartingWave) yield break;
 			_isStartingWave = true;
 
 			_waveCount++;
 			Debug.Log($"Wave {_waveCount} is starting!!!");
 			Dispatch.Fire(new WaveStartedMessage { waveCount = _waveCount });
 
-			await Task.Delay(TimeSpan.FromSeconds(_waveStartDelay));
+			yield return new WaitForSeconds(_waveStartDelay);
 
 			var t = Mathf.InverseLerp(1, _waveNumberForMaxAsteroidCount, _waveCount);
             var asteroidCount = Mathf.RoundToInt(Mathf.Lerp(_minAsteroidCount, _maxAsteroidCount, t));

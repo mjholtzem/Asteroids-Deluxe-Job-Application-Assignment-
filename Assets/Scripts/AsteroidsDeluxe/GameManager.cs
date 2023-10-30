@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace AsteroidsDeluxe
@@ -62,24 +60,24 @@ namespace AsteroidsDeluxe
 
 		}
 
-		private async void OnLivesChanged(LivesChangedMessage message)
+		private void OnLivesChanged(LivesChangedMessage message)
 		{
 			if(_currentGameState != GameState.Gameplay) return;
 			if(message.deltaLives > 0) return;
 
 			if(message.currentLives <= 0)
             {
-				OnGameOver();
+				StartCoroutine(OnGameOver());
 				return;
             }
 
-			await RespawnPlayer();
+			StartCoroutine(RespawnPlayer());
 		}
 
-		private async Task RespawnPlayer()
+		private IEnumerator RespawnPlayer()
 		{
-			await Task.Delay(TimeSpan.FromSeconds(_respawnDelay));
-			if(_livesManager.PlayerLives <= 0) return;
+			yield return new WaitForSeconds(_respawnDelay);
+			if(_livesManager.PlayerLives <= 0) yield break;
 
 			_player.transform.localPosition = Vector3.zero;
 			_player.gameObject.SetActive(true);
@@ -89,7 +87,7 @@ namespace AsteroidsDeluxe
 		private void StartMainMenu()
         {
 			SetGameState(GameState.MainMenu);
-			WaveManager.SpawnWave();
+			StartCoroutine(WaveManager.SpawnWave());
         }
 
 		public void StartGame()
@@ -98,13 +96,13 @@ namespace AsteroidsDeluxe
 			SetGameState(GameState.Gameplay);
 
 			_livesManager.Init();
-			_ = RespawnPlayer();
-			_waveManager.SpawnWave();
+			StartCoroutine(RespawnPlayer());
+			StartCoroutine(_waveManager.SpawnWave());
 		}
 
-		private async void OnGameOver()
+		private IEnumerator OnGameOver()
         {
-			await Task.Delay(TimeSpan.FromSeconds(_gameOverDelay));
+			yield return new WaitForSeconds(_gameOverDelay);
 
 			WaveManager.DeInit();
 			StartMainMenu();

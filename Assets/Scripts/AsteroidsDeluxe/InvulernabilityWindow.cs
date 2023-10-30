@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace AsteroidsDeluxe
 			if(_wasEnabled == _asteroidsBehaviour.enabled) return;
 
 			_wasEnabled = _asteroidsBehaviour.enabled;
-			if(_asteroidsBehaviour.enabled) HandleInvulerabilityWindow();
+			if(_asteroidsBehaviour.enabled) StartCoroutine(HandleInvulerabilityWindow());
 		}
 
         private void OnDisable()
@@ -32,10 +33,10 @@ namespace AsteroidsDeluxe
 			_wasEnabled = false;
         }
 
-        private async void HandleInvulerabilityWindow()
+        private IEnumerator HandleInvulerabilityWindow()
 		{
 			_rigidbody.simulated = false;
-			await Task.Delay(TimeSpan.FromSeconds(_invulnerabilityWindow));
+			yield return new WaitForSeconds(_invulnerabilityWindow);
 			_rigidbody.simulated = true;
 		}
 
