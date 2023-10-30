@@ -19,6 +19,7 @@ I'm very happy with the amount of work I was able to get done in the time-frame 
  - Lives system with a new life being added every 10k points
  - Game Over state that returns you to the main menu
  - Main Menu with it's own wave spawning logic that will simulate forever in the background similar to the original arcade hardware
+ - Audio for everything!!!
 
 ## What could be improved?
 Of course given the time constraint there are some things I did not get done. Here are a few things that I think I would improve given more time
